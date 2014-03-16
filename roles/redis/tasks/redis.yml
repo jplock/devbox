@@ -1,0 +1,16 @@
+---
+# Installs Redis
+
+- name: Add Redis repository
+  apt_repository: repo='ppa:chris-lea/redis-server' state=present
+
+- name: Install Redis
+  apt: pkg=redis-server state=present update_cache=yes
+
+- name: Listen on all interfaces
+  lineinfile: dest=/etc/redis/redis.conf regexp="^bind" line="bind 0.0.0.0" state=present
+  notify: restart redis
+
+- name: Enable keepalives
+  lineinfile: dest=/etc/redis/redis.conf regexp="^tcp-keepalive" line="tcp-keepalive 60" state=present
+  notify: restart redis

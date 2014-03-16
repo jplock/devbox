@@ -1,0 +1,5 @@
+---
+###############################################################################
+# Variables used when testing with Vagrant
+# For a complete reference look at the `vars/defaults.yml` file.
+###############################################################################

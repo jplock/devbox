@@ -1,0 +1,64 @@
+---
+# Installs Riak
+
+- name: Ensure repository key for Riak is in place
+  apt_key: url=http://apt.basho.com/gpg/basho.apt.key state=present
+
+- name: Add Riak repository
+  apt_repository: repo='deb http://apt.basho.com precise main' state=present
+
+- name: Install Riak
+  apt: pkg=riak state=present update_cache=yes
+
+- name: Copy app.config into place
+  copy: src=etc_riak_app.config dest=/etc/riak/app.config owner=riak group=riak
+  notify: restart riak
+
+- name: Create /etc/default/riak
+  lineinfile: dest=/etc/default/riak regexp=^ulimit line="ulimit -n 65536" state=present
+  notify: restart riak
+
+- name: Enable Erlang VM scheduler tuning
+  lineinfile: dest=/etc/riak/vm.args regexp="^\+sfwi" insertafter="^##\+sfwi" line="+sfwi 500" state=present
+  notify: restart riak
+
+- name: Increase sender-side network distribution
+  lineinfile: dest=/etc/riak/vm.args regexp="^\+zdbbl" insertafter="^##\+zdbbl" line="+zdbbl 32768" state=present
+  notify: restart riak
+
+- name: Update open file limits for Riak
+  lineinfile: dest=/etc/security/limits.conf regexp="{{ item.regexp }}" line="{{ item.line }}" state=present
+  with_items:
+    - { regexp: "^riak soft", line: "riak soft nofile 4096" }
+    - { regexp: "^riak hard", line: "riak hard nofile 65536" }
+  notify: restart riak
+
+- name: Optimize Riak sysctl settings
+  sysctl: name="{{ item.name }}" value={{ item.value }} state=present reload=yes
+  with_items:
+    - { name: "vm.swappiness", value: 0 }
+    - { name: "net.ipv4.tcp_max_syn_backlog", value: 40000 }
+    - { name: "net.core.somaxconn", value: 40000 }
+    - { name: "net.ipv4.tcp_sack", value: 1 }
+    - { name: "net.ipv4.tcp_window_scaling", value: 1 }
+    - { name: "net.ipv4.tcp_fin_timeout", value: 15 }
+    - { name: "net.ipv4.tcp_keepalive_intvl", value: 30 }
+    - { name: "net.ipv4.tcp_tw_reuse", value: 1 }
+    - { name: "net.ipv4.tcp_moderate_rcvbuf", value: 1 }
+  notify: restart riak
+
+- name: Register current scheduler
+  shell: cat /sys/block/{{ block_device }}/queue/scheduler
+  register: scheduler
+
+- name: Change default scheduler on {{ block_device }}
+  shell: echo deadline > /sys/block/{{ block_device }}/queue/scheduler
+  when: scheduler.stdout.find('[deadline]') == -1
+
+- name: Register current scheduler depth
+  shell: cat /sys/block/{{ block_device }}/queue/nr_requests
+  register: nr_requests
+
+- name: Increase scheduler depth
+  shell: echo 1024 > /sys/block/{{ block_device }}/queue/nr_requests
+  when: nr_requests.stdout.find('1024') == -1
