@@ -1,0 +1,12 @@
+---
+# Installs MySQL
+
+- name: Install MySQL
+  apt: pkg=mysql-server state=present
+
+- name: Listen on all interfaces
+  lineinfile: dest=/etc/mysql/my.cnf regexp="^bind\-address" line="bind-address = 0.0.0.0" state=present
+  notify: restart mysql
+
+- name: Ensure MySQL is running and enabled
+  service: name=mysql state=started enabled=yes

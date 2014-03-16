@@ -34,9 +34,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.host_key_checking = false
     ansible.extra_vars = { ansible_ssh_user: "vagrant", testing: true }
 
-    #ansible.tags = ["ntp"]
-    ansible.skip_tags = ["ntp", "riak", "rabbitmq"]
-    ansible.verbose = "v"
+    #ansible.tags = [""]
+    #ansible.skip_tags = [""]
+    #ansible.verbose = "vvvv"
   end
 
 end

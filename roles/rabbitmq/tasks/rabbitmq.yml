@@ -14,11 +14,9 @@
   lineinfile: dest=/etc/default/rabbitmq-server regexp=^ulimit line="ulimit -n 65536" state=present
   notify: restart rabbitmq
 
-- name: Register currently enabled plugins
-  shell: /usr/sbin/rabbitmq-plugins list -E -m
-  register: plugins
-
 - name: Enable RabbitMQ management plugin
-  command: /usr/sbin/rabbitmq-plugins enable rabbitmq_management
-  when: plugins.stdout.find('rabbitmq_management') == -1
+  rabbitmq_plugin: names=rabbitmq_management state=enabled
   notify: restart rabbitmq
+
+- name: Ensure RabbitMQ is running and enabled
+  service: name=rabbitmq-server state=started enabled=yes

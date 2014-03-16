@@ -14,3 +14,6 @@
 - name: Enable keepalives
   lineinfile: dest=/etc/redis/redis.conf regexp="^tcp-keepalive" line="tcp-keepalive 60" state=present
   notify: restart redis
+
+- name: Ensure redis is running and enabled
+  service: name=redis-server state=started enabled=yes

@@ -12,9 +12,11 @@
   with_items:
     - sudo
     - tcsh
+    - python-software-properties
 
 - name: Install unattended upgrades (Debian/Ubuntu only)
   apt: pkg=unattended-upgrades state=installed
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - include: ntp.yml tags=ntp
+- include: users.yml tags=users

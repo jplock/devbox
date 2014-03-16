@@ -13,3 +13,7 @@
     - riak
     - rabbitmq
     - redis
+    - mongodb
+    - postgresql
+    - mysql
+    - zookeeper

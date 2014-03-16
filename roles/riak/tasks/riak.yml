@@ -15,7 +15,7 @@
   notify: restart riak
 
 - name: Create /etc/default/riak
-  lineinfile: dest=/etc/default/riak regexp=^ulimit line="ulimit -n 65536" state=present
+  copy: content="ulimit -n 65536" dest=/etc/default/riak
   notify: restart riak
 
 - name: Enable Erlang VM scheduler tuning
@@ -62,3 +62,6 @@
 - name: Increase scheduler depth
   shell: echo 1024 > /sys/block/{{ block_device }}/queue/nr_requests
   when: nr_requests.stdout.find('1024') == -1
+
+- name: Ensure Riak is running and enabled
+  service: name=riak state=started enabled=yes

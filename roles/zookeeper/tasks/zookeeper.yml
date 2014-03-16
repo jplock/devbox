@@ -1,0 +1,16 @@
+---
+# Installs Zookeeper
+
+- name: Install Zookeeper
+  apt: pkg={{ item }} state=present
+  with_items:
+    - zookeeper
+    - zookeeper-bin
+    - zookeeperd
+
+- name: Set instance ID
+  copy: content=1 dest=/etc/zookeeper/conf/myid
+  notify: restart zookeeper
+
+- name: Ensure Zookeeper is running and enabled
+  service: name=zookeeper state=started enabled=yes
