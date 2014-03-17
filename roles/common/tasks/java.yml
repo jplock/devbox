@@ -1,0 +1,16 @@
+---
+# Defines tasks applicable for Oracle Java
+
+- name: Ensure WebUpd8 repository is installed
+  #apt_repository: repo='ppa:webupd8team/java' state=present
+  apt_repository: repo='ppa:feniix/java' state=present
+
+- name: Accept oracle license
+  #debconf: name='oracle-java7-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
+  shell: echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+
+- name: Install Oracle JRE
+  apt: pkg={{ item }} state=present update_cache=yes
+  with_items:
+    - oracle-java7-installer
+    - oracle-java7-set-default
