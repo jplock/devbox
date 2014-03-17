@@ -1,15 +1,30 @@
 ---
 # Installs Zookeeper
 
-- name: Install Zookeeper
+- name: Fetch zookeeper
+  get_url: url=http://mirror.reverse.net/pub/apache/zookeeper/stable/zookeeper-{{ zookeeper_version }}.tar.gz dest=/root/zookeeper-{{ zookeeper_version }}.tar.gz
+
+- name: Extract zookeeper
+  command: tar xzf zookeeper-{{ zookeeper_version }}.tar.gz chdir=/root creates=/root/zookeeper-{{ zookeeper_version }}
+
+- name: Install packages required for building a zookeeper package
   apt: pkg={{ item }} state=present
   with_items:
-    - zookeeper
-    - zookeeper-bin
-    - zookeeperd
+    - ant
+    - libtool
+    - libcppunit-dev
+    - autoconf
+    - python-dev
+    - build-essential
 
-- name: Set instance ID
-  copy: content=1 dest=/etc/zookeeper/conf/myid
+- name: Create zookeeper debian package
+  command: ant deb chdir=/root/zookeeper-{{ zookeeper_version }} creates=/root/zookeeper-{{ zookeeper_version }}/build/zookeeper_{{ zookeeper_version }}-1_amd64.deb
+
+- name: Install zookeeper
+  command: dpkg -i zookeeper_{{ zookeeper_version }}-1_amd64.deb chdir=/root/zookeeper-{{ zookeeper_version }}/build creates=/var/lib/dpkg/info/zookeeper.list
+
+- name: Fix zookeeper startup script to be ran by bash
+  lineinfile: dest=/etc/init.d/zookeeper regexp="^#!" line="#! /usr/bin/env bash" state=present
   notify: restart zookeeper
 
 - name: Ensure Zookeeper is running and enabled

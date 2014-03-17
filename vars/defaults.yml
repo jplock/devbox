@@ -24,3 +24,6 @@ block_device: sda
 # users
 # main_user_name: 
 main_user_shell: /bin/bash
+
+# zookeeper
+zookeeper_version: 3.4.6
