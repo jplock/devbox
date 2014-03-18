@@ -1,0 +1,26 @@
+---
+# Installs Docker
+
+- name: Install updated Linux 3.8 kernel
+  apt: pkg={{ item }} state=present
+  with_items:
+    - linux-image-generic-lts-raring
+    - linux-headers-generic-lts-raring
+
+- name: Add Docker APT key
+  apt_key: url=https://get.docker.io/gpg state=present
+
+- name: Add Docker repository
+  apt_repository: repo='deb http://get.docker.io/ubuntu docker main' state=present
+
+- name: Install Docker
+  apt: pkg=lxc-docker state=present update_cache=yes
+
+- name: Add users to docker group
+  user: name={{ item }} groups=docker append=yes
+  with_items:
+    - vagrant
+    - "{{ main_user_name }}"
+
+- name: Ensure docker is running and enabled
+  service: name=docker state=started enabled=yes
