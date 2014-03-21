@@ -27,5 +27,9 @@
   lineinfile: dest=/etc/init.d/zookeeper regexp="^#!" line="#! /usr/bin/env bash" state=present
   notify: restart zookeeper
 
+- name: Replace JRE6 with JRE8
+  lineinfile: dest=/etc/zookeeper/zookeeper-env.sh regexp="^export JAVA_HOME" line="export JAVA_HOME=/usr/lib/jvm/java-8-oracle/jre" state=present
+  notify: restart zookeeper
+
 - name: Ensure Zookeeper is running and enabled
   service: name=zookeeper state=started enabled=yes
