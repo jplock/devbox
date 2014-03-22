@@ -2,7 +2,7 @@
 # Installs RabbitMQ
 
 - name: Ensure repository key for RabbitMQ is in place
-  apt_key: url=http://www.rabbitmq.com/rabbitmq-signing-key-public.asc state=present
+  apt_key: url=http://www.rabbitmq.com/rabbitmq-signing-key-public.asc id=056E8E56 state=present
 
 - name: Add RabbitMQ repository
   apt_repository: repo='deb http://www.rabbitmq.com/debian/ testing main' state=present

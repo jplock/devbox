@@ -2,7 +2,7 @@
 # Installs MongoDB
 
 - name: Ensure repository key for MongoDB is in place
-  apt_key: url=http://docs.mongodb.org/10gen-gpg-key.asc state=present
+  apt_key: url=http://docs.mongodb.org/10gen-gpg-key.asc id=7F0CEB10 state=present
 
 - name: Add MongoDB repository
   apt_repository: repo='deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' state=present

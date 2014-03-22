@@ -2,7 +2,7 @@
 # Installs PostgreSQL
 
 - name: Ensure repository key for PostgreSQL is in place
-  apt_key: url=https://www.postgresql.org/media/keys/ACCC4CF8.asc validate_certs=no state=present
+  apt_key: url=https://www.postgresql.org/media/keys/ACCC4CF8.asc id=ACCC4CF8 validate_certs=no state=present
 
 - name: Add PostgreSQL repository
   apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main' state=present

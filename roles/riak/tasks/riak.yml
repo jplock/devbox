@@ -2,7 +2,7 @@
 # Installs Riak
 
 - name: Ensure repository key for Riak is in place
-  apt_key: url=http://apt.basho.com/gpg/basho.apt.key state=present
+  apt_key: url=http://apt.basho.com/gpg/basho.apt.key id=DDF2E833 state=present
 
 - name: Add Riak repository
   apt_repository: repo='deb http://apt.basho.com precise main' state=present

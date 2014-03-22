@@ -8,7 +8,7 @@
     - linux-headers-generic-lts-raring
 
 - name: Add Docker APT key
-  apt_key: url=https://get.docker.io/gpg state=present
+  apt_key: url=https://get.docker.io/gpg id=A88D21E9 state=present
 
 - name: Add Docker repository
   apt_repository: repo='deb http://get.docker.io/ubuntu docker main' state=present
