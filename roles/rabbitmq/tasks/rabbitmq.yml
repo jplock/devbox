@@ -18,5 +18,9 @@
   rabbitmq_plugin: names=rabbitmq_management state=enabled
   notify: restart rabbitmq
 
+- name: Allow the guest user to connect remotely
+  copy: src=etc_rabbitmq_rabbitmq.config dest=/etc/rabbitmq/rabbitmq.config
+  notify: restart rabbitmq
+
 - name: Ensure RabbitMQ is running and enabled
   service: name=rabbitmq-server state=started enabled=yes
