@@ -14,7 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # mysql
   config.vm.network "forwarded_port", guest: 3306, host: 3306
-  # postgres
+  # postgresql
   config.vm.network "forwarded_port", guest: 5432, host: 5432
   # redis
   config.vm.network "forwarded_port", guest: 6379, host: 6379
@@ -28,6 +28,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 27017, host: 27017
   # zookeeper
   config.vm.network "forwarded_port", guest: 2181, host: 2181
+  # elasticsearch
+  config.vm.network "forwarded_port", guest: 9200, host: 9200
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "site.yml"

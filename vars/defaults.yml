@@ -27,3 +27,6 @@ main_user_shell: /bin/bash
 
 # zookeeper
 zookeeper_version: 3.4.6
+
+# elasticsearch
+elasticsearch_version: 1.0

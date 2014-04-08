@@ -12,6 +12,7 @@
     - common
     - riak
     - rabbitmq
+    - elasticsearch
     - redis
     - mongodb
     - postgresql
