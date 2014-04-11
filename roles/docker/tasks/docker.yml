@@ -14,7 +14,7 @@
   apt_repository: repo='deb http://get.docker.io/ubuntu docker main' state=present
 
 - name: Install Docker
-  apt: pkg=lxc-docker state=present update_cache=yes
+  apt: pkg=lxc-docker={{ docker_version }} state=present update_cache=yes
 
 - name: Add users to docker group
   user: name={{ item }} groups=docker append=yes

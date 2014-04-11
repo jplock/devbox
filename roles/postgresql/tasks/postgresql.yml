@@ -8,7 +8,7 @@
   apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main' state=present
 
 - name: Install PostgreSQL
-  apt: pkg=postgresql-9.3 state=present update_cache=yes
+  apt: pkg=postgresql-9.3={{ postgresql_version }} state=present update_cache=yes
 
 - name: Listen on all interfaces
   lineinfile: dest=/etc/postgresql/9.3/main/postgresql.conf regexp="^listen_addresses" insertafter="^#listen_addresses" line="listen_addresses = '*'" state=present

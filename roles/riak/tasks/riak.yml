@@ -8,7 +8,7 @@
   apt_repository: repo='deb http://apt.basho.com precise main' state=present
 
 - name: Install Riak
-  apt: pkg=riak state=present update_cache=yes
+  apt: pkg=riak={{ riak_version }} state=present update_cache=yes
 
 - name: Copy app.config into place
   copy: src=etc_riak_app.config dest=/etc/riak/app.config owner=riak group=riak

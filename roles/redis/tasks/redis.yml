@@ -5,7 +5,7 @@
   apt_repository: repo='ppa:chris-lea/redis-server' state=present
 
 - name: Install Redis
-  apt: pkg=redis-server state=present update_cache=yes
+  apt: pkg=redis-server={{ redis_version }} state=present update_cache=yes
 
 - name: Listen on all interfaces
   lineinfile: dest=/etc/redis/redis.conf regexp="^bind" line="bind 0.0.0.0" state=present

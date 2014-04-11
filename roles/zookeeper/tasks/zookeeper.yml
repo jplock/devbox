@@ -20,11 +20,21 @@
     - python-dev
     - build-essential
 
+- name: Remove sun-java6-jre dependency
+  lineinfile: dest="/root/zookeeper-{{ zookeeper_version }}/src/packages/deb/zookeeper.control/control"
+              regexp="^Depends"
+              state=absent
+
 - name: Create zookeeper debian package
-  command: ant deb chdir=/root/zookeeper-{{ zookeeper_version }}
+  command: ant deb
+           chdir=/root/zookeeper-{{ zookeeper_version }}
            creates=/root/zookeeper-{{ zookeeper_version }}/build/zookeeper_{{ zookeeper_version }}-1_amd64.deb
 
 - name: Install zookeeper
+  # TODO: this should work in Ansible 1.5 but it complains that "deb" is not valid
+  #
+  #apt: deb="/root/zookeeper-{{ zookeeper_version }}/build/zookeeper_{{ zookeeper_version }}-1_amd64.deb"
+  #     state=present
   command: dpkg -i zookeeper_{{ zookeeper_version }}-1_amd64.deb
            chdir=/root/zookeeper-{{ zookeeper_version }}/build
            creates=/var/lib/dpkg/info/zookeeper.list
