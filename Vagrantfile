@@ -30,6 +30,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 2181, host: 2181
   # elasticsearch
   config.vm.network "forwarded_port", guest: 9200, host: 9200
+  # kafka
+  config.vm.network "forwarded_port", guest: 9092, host: 9092
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "site.yml"

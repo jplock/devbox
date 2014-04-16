@@ -25,6 +25,9 @@ block_device: sda
 # main_user_name: 
 main_user_shell: /bin/bash
 
+# kafka
+kafka_version: 0.8.1
+
 # redis
 redis_version: 2:2.8.8-1chl1~precise1
 

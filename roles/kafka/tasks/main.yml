@@ -1,0 +1,3 @@
+---
+
+- include: kafka.yml tags=kafka

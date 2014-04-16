@@ -19,3 +19,4 @@
     - mysql
     - zookeeper
     - docker
+    - kafka

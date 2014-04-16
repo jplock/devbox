@@ -1,0 +1,56 @@
+---
+# Installs Kafka
+
+- name: Create the kafka group
+  group: name=kafka system=yes state=present
+
+- name: Create the kafka user
+  user: name=kafka
+        group=kafka
+        system=yes
+        home=/usr/local/kafka
+        shell=/bin/false
+        state=present
+
+- name: Fetch kafka
+  get_url: url=http://mirrors.ibiblio.org/apache/kafka/{{ kafka_version }}/kafka_2.10-{{ kafka_version }}.tgz
+           dest=/usr/local/kafka_2.10-{{ kafka_version }}.tgz
+
+- name: Extract kafka
+  command: tar xzf kafka_2.10-{{ kafka_version }}.tgz
+           chdir=/usr/local
+           creates=/usr/local/kafka_2.10-{{ kafka_version }}
+
+- name: Symlink kafka
+  file: src=/usr/local/kafka_2.10-{{ kafka_version }}
+        dest=/usr/local/kafka
+        owner=kafka
+        group=kafka
+        state=link
+
+- name: Fix directory permissions
+  file: path=/usr/local/kafka_2.10-{{ kafka_version }}
+        state=directory
+        owner=kafka
+        group=kafka
+        recurse=yes
+
+- name: Create logs directory
+  file: path=/usr/local/kafka/logs state=directory
+
+- name: Enable Kafka
+  lineinfile: dest=/etc/default/kafka
+              line="KAFKA_ENABLED=yes"
+              state=present
+              create=yes
+
+- name: Copy upstart script into place
+  copy: src=etc_init_kafka.conf
+        dest=/etc/init/kafka.conf
+        owner=root
+        group=root
+        mode=640
+  notify: restart kafka
+
+- name: Ensure Kafka is running and enabled
+  service: name=kafka state=started enabled=yes
