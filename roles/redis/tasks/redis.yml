@@ -15,5 +15,9 @@
   lineinfile: dest=/etc/redis/redis.conf regexp="^tcp-keepalive" line="tcp-keepalive 60" state=present
   notify: restart redis
 
+- name: Adjust ulimit
+  lineinfile: dest=/etc/default/redis-server regexp="^# ULIMIT" line="ULIMIT=65536" state=present
+  notify: restart redis
+
 - name: Ensure redis is running and enabled
   service: name=redis-server state=started enabled=yes
