@@ -29,7 +29,7 @@ main_user_shell: /bin/bash
 kafka_version: 0.8.1
 
 # redis
-redis_version: 2:2.8.8-1chl1~precise1
+redis_version: 2:2.8.8-1chl1~trusty1
 
 # zookeeper
 zookeeper_version: 3.4.6
@@ -53,4 +53,4 @@ rabbitmq_version: 3.3.0-1
 mysql_version: 5.5.35-0ubuntu0.12.04.2
 
 # postgresql
-postgresql_version: 9.3.4-1.pgdg12.4+1
+postgresql_version: 9.3.4-1.pgdg14.04+1

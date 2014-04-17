@@ -5,7 +5,7 @@
   apt_key: url=https://www.postgresql.org/media/keys/ACCC4CF8.asc id=ACCC4CF8 validate_certs=no state=present
 
 - name: Add PostgreSQL repository
-  apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main' state=present
+  apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main' state=present
 
 - name: Install PostgreSQL
   apt: pkg=postgresql-9.3={{ postgresql_version }} state=present update_cache=yes

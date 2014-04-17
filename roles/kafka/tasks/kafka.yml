@@ -26,6 +26,7 @@
         dest=/usr/local/kafka
         owner=kafka
         group=kafka
+        force=yes
         state=link
 
 - name: Fix directory permissions
@@ -36,7 +37,10 @@
         recurse=yes
 
 - name: Create logs directory
-  file: path=/usr/local/kafka/logs state=directory
+  file: path=/usr/local/kafka/logs
+        state=directory
+        owner=kafka
+        group=kafka
 
 - name: Enable Kafka
   lineinfile: dest=/etc/default/kafka

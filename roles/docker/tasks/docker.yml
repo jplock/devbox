@@ -1,12 +1,6 @@
 ---
 # Installs Docker
 
-- name: Install updated Linux 3.8 kernel
-  apt: pkg={{ item }} state=present
-  with_items:
-    - linux-image-generic-lts-raring
-    - linux-headers-generic-lts-raring
-
 - name: Add Docker APT key
   apt_key: url=https://get.docker.io/gpg id=A88D21E9 state=present
 
