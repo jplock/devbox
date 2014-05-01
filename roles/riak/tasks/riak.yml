@@ -15,7 +15,7 @@
   notify: restart riak
 
 - name: Create /etc/default/riak
-  copy: content="ulimit -n 65536" dest=/etc/default/riak
+  copy: content="ulimit -n 65536" dest=/etc/default/riak owner=root group=root mode=644
   notify: restart riak
 
 - name: Enable Erlang VM scheduler tuning

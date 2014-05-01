@@ -47,6 +47,9 @@
               line="KAFKA_ENABLED=yes"
               state=present
               create=yes
+              owner=root
+              group=root
+              mode=644
 
 - name: Copy upstart script into place
   copy: src=etc_init_kafka.conf
