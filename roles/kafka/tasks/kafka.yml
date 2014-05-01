@@ -8,6 +8,7 @@
   user: name=kafka
         group=kafka
         system=yes
+        createhome=no
         home=/usr/local/kafka
         shell=/bin/false
         state=present
