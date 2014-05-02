@@ -1,0 +1,3 @@
+---
+
+- include: exhibitor.yml tags=exhibitor
