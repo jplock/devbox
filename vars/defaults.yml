@@ -25,9 +25,6 @@ block_device: sda
 # main_user_name: 
 main_user_shell: /bin/bash
 
-# exhibitor
-exhibitor_version: 1.5.2
-
 # kafka
 kafka_version: 0.8.1.1
 

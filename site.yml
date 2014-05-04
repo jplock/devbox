@@ -20,4 +20,3 @@
     - zookeeper
     - docker
     - kafka
-    - exhibitor
