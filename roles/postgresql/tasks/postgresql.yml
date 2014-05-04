@@ -2,17 +2,34 @@
 # Installs PostgreSQL
 
 - name: Ensure repository key for PostgreSQL is in place
-  apt_key: url=https://www.postgresql.org/media/keys/ACCC4CF8.asc id=ACCC4CF8 validate_certs=no state=present
+  apt_key: url=https://www.postgresql.org/media/keys/ACCC4CF8.asc
+           id=ACCC4CF8
+           state=present
 
 - name: Add PostgreSQL repository
-  apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main' state=present
+  apt_repository: repo="deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main"
+                  state=present
 
 - name: Install PostgreSQL
-  apt: pkg=postgresql-9.3={{ postgresql_version }} state=present update_cache=yes
+  apt: pkg={{ item }} state=present update_cache=yes
+  with_items:
+    - "postgresql-9.3={{ postgresql_version }}"
+    - postgresql-contrib-9.3
 
 - name: Listen on all interfaces
-  lineinfile: dest=/etc/postgresql/9.3/main/postgresql.conf regexp="^listen_addresses" insertafter="^#listen_addresses" line="listen_addresses = '*'" state=present
+  lineinfile: dest=/etc/postgresql/9.3/main/postgresql.conf
+              regexp="^listen_addresses"
+              insertafter="^#listen_addresses"
+              line="listen_addresses = '*'"
+              state=present
   notify: restart postgresql
+
+- name: Allow connecting as postgres remotely
+  lineinfile: dest=/etc/postgresql/9.3/main/pg_hba.conf
+              line="host all all 0.0.0.0/0 md5"
+              state=present
+  notify: restart postgres
 
 - name: Ensure PostgreSQL is running and enabled
   service: name=postgresql state=started enabled=yes
+  notify: set postgres password
