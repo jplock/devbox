@@ -28,7 +28,7 @@
   lineinfile: dest=/etc/postgresql/9.3/main/pg_hba.conf
               line="host all all 0.0.0.0/0 md5"
               state=present
-  notify: restart postgres
+  notify: restart postgresql
 
 - name: Ensure PostgreSQL is running and enabled
   service: name=postgresql state=started enabled=yes
