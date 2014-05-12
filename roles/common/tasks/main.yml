@@ -12,6 +12,7 @@
   with_items:
     - sudo
     - tcsh
+    - htop
     - python-software-properties
 
 - name: Install unattended upgrades (Debian/Ubuntu only)
