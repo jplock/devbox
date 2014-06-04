@@ -34,17 +34,31 @@
   notify: restart riak
 
 - name: Optimize Riak sysctl settings
-  sysctl: name="{{ item.name }}" value={{ item.value }} state=present reload=yes
+  sysctl: name="{{ item.name }}" value={{ item.value }} state=present sysctl_set=yes reload=yes
   with_items:
-    - { name: "vm.swappiness", value: 0 }
+    - { name: "vm.swappiness",                value: 0 }
     - { name: "net.ipv4.tcp_max_syn_backlog", value: 40000 }
-    - { name: "net.core.somaxconn", value: 40000 }
-    - { name: "net.ipv4.tcp_sack", value: 1 }
-    - { name: "net.ipv4.tcp_window_scaling", value: 1 }
-    - { name: "net.ipv4.tcp_fin_timeout", value: 15 }
+    - { name: "net.core.somaxconn",           value: 40000 }
+    - { name: "net.ipv4.tcp_sack",            value: 1 }
+    - { name: "net.ipv4.tcp_window_scaling",  value: 1 }
+    - { name: "net.ipv4.tcp_fin_timeout",     value: 15 }
     - { name: "net.ipv4.tcp_keepalive_intvl", value: 30 }
-    - { name: "net.ipv4.tcp_tw_reuse", value: 1 }
+    - { name: "net.ipv4.tcp_tw_reuse",        value: 1 }
     - { name: "net.ipv4.tcp_moderate_rcvbuf", value: 1 }
+    - { name: "net.core.wmem_default",        value: 134217728 }
+    - { name: "net.core.rmem_default",        value: 134217728 }
+    - { name: "net.core.wmem_max",            value: 134217728 }
+    - { name: "net.core.rmem_max",            value: 134217728 }
+    - { name: "net.core.netdev_max_backlog",  value: 300000 }
+  notify: restart riak
+
+# Was not able to set these using the sysctl module
+- name: Add additional Riak sysctl settings
+  lineinfile: dest=/etc/sysctl.conf regexp="{{ item.regexp }}" line="{{ item.line }}" state=present
+  with_items:
+    - { regexp: "^net.ipv4.tcp_mem",  line: "net.ipv4.tcp_mem = 134217728 134217728 134217728" }
+    - { regexp: "^net.ipv4.tcp_rmem", line: "net.ipv4.tcp_rmem = 4096 277750 134217728" }
+    - { regexp: "^net.ipv4.tcp_wmem", line: "net.ipv4.tcp_wmem = 4096 277750 134217728" }
   notify: restart riak
 
 - name: Register current scheduler
