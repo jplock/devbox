@@ -41,7 +41,7 @@ elasticsearch_version: 1.2
 riak_version: 1.4.9-1
 
 # mongodb
-mongodb_version: 2.6.1
+mongodb_version: 2.6.3
 
 # docker
 docker_version: 1.0.0
