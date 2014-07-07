@@ -44,7 +44,7 @@ riak_version: 1.4.9-1
 mongodb_version: 2.6.3
 
 # docker
-docker_version: 1.0.1
+docker_version: 1.1.0
 
 # rabbitmq
 rabbitmq_version: 3.3.4-1
