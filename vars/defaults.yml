@@ -54,3 +54,13 @@ mysql_version: 5.5.37-0ubuntu0.14.04.1
 
 # postgresql
 postgresql_version: 9.3.4-1.pgdg14.04+1
+
+# mesos
+mesos_version: 0.19.0-1.1.ubuntu1404
+mesos_egg_version: 0.19.0_rc2
+
+# deimos
+deimos_version: 0.3.4
+
+# marathon
+marathon_version: 0.6.0

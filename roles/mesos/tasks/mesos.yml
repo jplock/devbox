@@ -1,0 +1,50 @@
+---
+# Installs Mesos and Deimos
+
+- name: Ensure repository key for Mesos is in place
+  apt_key: id=E56151BF keyserver=keyserver.ubuntu.com state=present
+
+- name: Add Mesos repository
+  apt_repository: repo='deb http://repos.mesosphere.io/ubuntu/ trusty main'
+                  state=present
+
+- name: Install Mesos dependencies
+  apt: pkg=python-protobuf state=present
+
+- name: Install Mesos
+  apt: pkg=mesos={{ mesos_version }} state=present update_cache=yes
+
+- name: Download Mesos Python Egg
+  get_url: url='http://downloads.mesosphere.io/master/ubuntu/14.04/mesos-{{ mesos_egg_version }}-py2.7-linux-x86_64.egg'
+           dest=/var/tmp/mesos-{{ mesos_egg_version }}-py2.7-linux-x86_64.egg
+
+- name: Install Mesos Python Egg
+  command: easy_install /var/tmp/mesos-{{ mesos_egg_version }}-py2.7-linux-x86_64.egg
+           creates=/usr/local/lib/python2.7/dist-packages/mesos-{{ mesos_egg_version }}-py2.7-linux-x86_64.egg
+
+- name: Install Deimos
+  pip: name=deimos version={{ deimos_version }} state=present
+
+- name: Configure Deimos as the Mesos Slave container
+  lineinfile: dest=/etc/mesos-slave/containerizer_path
+              line='/usr/local/bin/deimos'
+              create=yes
+              state=present
+  notify: restart mesos slave
+
+- name: Configure the Mesos Slave to use external containers
+  lineinfile: dest=/etc/mesos-slave/isolation
+              line='external'
+              create=yes
+              state=present
+  notify: restart mesos slave
+
+- name: Create temporary deimos directory
+  file: path=/tmp/deimos state=directory
+  notify: restart mesos slave
+
+- name: Ensure Mesos Master is running and enabled
+  service: name=mesos-master state=started enabled=yes
+
+- name: Ensure Mesos Slave is running and enabled
+  service: name=mesos-slave state=started enabled=yes

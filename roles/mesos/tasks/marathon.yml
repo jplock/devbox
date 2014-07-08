@@ -1,0 +1,40 @@
+---
+# Installs Marathon
+
+- name: Check out marathon
+  git: repo=https://github.com/mesosphere/marathon-pkg.git
+       dest=/var/tmp/marathon-pkg
+       version=master
+
+- name: Initialize the git submodule
+  command: git submodule init chdir=/var/tmp/marathon-pkg
+
+- name: Checkout marathon submodule
+  command: git submodule update
+           chdir=/var/tmp/marathon-pkg
+           creates=/var/tmp/marathon-pkg/marathon/README.md
+
+- name: Install ruby-dev
+  apt: pkg=ruby-dev state=present
+
+- name: Install FPM
+  gem: name=fpm state=present
+
+- name: Download SBT debian package
+  get_url: url=http://dl.bintray.com/sbt/debian/sbt-0.13.5.deb
+           dest=/var/tmp/sbt-0.13.5.deb
+
+- name: Install SBT
+  apt: deb=/var/tmp/sbt-0.13.5.deb state=installed
+
+- name: Create Marathon debian package
+  command: make PKG_REL={{ marathon_version }} deb
+           chdir=/var/tmp/marathon-pkg
+           creates=/var/tmp/marathon-pkg/marathon_0.6.0-{{ marathon_version }}_amd64.deb
+
+- name: Install Marathon
+  apt: deb=/var/tmp/marathon-pkg/marathon_0.6.0-{{ marathon_version }}_amd64.deb
+       state=installed
+
+- name: Ensure Marathon is running and enabled
+  service: name=marathon state=started enabled=yes

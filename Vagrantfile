@@ -8,7 +8,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provider "virtualbox" do |vb|
     vb.name = "devbox"
-    vb.memory = 2048
+    vb.memory = 4096
   end
 
   # mysql
@@ -32,6 +32,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 9300, host: 9300
   # kafka
   config.vm.network "forwarded_port", guest: 9092, host: 9092
+  # mesos
+  config.vm.network "forwarded_port", guest: 5050, host: 5050
+  # marathon
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "site.yml"

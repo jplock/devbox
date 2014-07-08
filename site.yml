@@ -20,3 +20,5 @@
     - zookeeper
     - docker
     - kafka
+    - mesos
+
