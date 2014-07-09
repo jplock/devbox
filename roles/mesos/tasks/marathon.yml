@@ -18,7 +18,9 @@
   apt: pkg=ruby-dev state=present
 
 - name: Install FPM
-  gem: name=fpm state=present
+  #gem: name=fpm state=present
+  command: gem install -f fpm
+           creates=/usr/local/bin/fpm
 
 - name: Download SBT debian package
   get_url: url=http://dl.bintray.com/sbt/debian/sbt-0.13.5.deb
