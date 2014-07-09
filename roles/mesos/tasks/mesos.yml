@@ -40,7 +40,7 @@
   notify: restart mesos slave
 
 - name: Create temporary deimos directory
-  file: path=/tmp/deimos state=directory
+  file: path=/tmp/deimos state=directory owner=root group=root
   notify: restart mesos slave
 
 - name: Ensure Mesos Master is running and enabled

@@ -30,10 +30,10 @@
 - name: Create Marathon debian package
   command: make PKG_REL={{ marathon_version }} deb
            chdir=/var/tmp/marathon-pkg
-           creates=/var/tmp/marathon-pkg/marathon_0.6.0-{{ marathon_version }}_amd64.deb
+           creates=/var/tmp/marathon-pkg/marathon_0.7.0-{{ marathon_version }}_amd64.deb
 
 - name: Install Marathon
-  apt: deb=/var/tmp/marathon-pkg/marathon_0.6.0-{{ marathon_version }}_amd64.deb
+  apt: deb=/var/tmp/marathon-pkg/marathon_0.7.0-{{ marathon_version }}_amd64.deb
        state=installed
 
 - name: Ensure Marathon is running and enabled

@@ -3,12 +3,12 @@
 
 - name: Fetch zookeeper
   get_url: url=http://mirror.reverse.net/pub/apache/zookeeper/stable/zookeeper-{{ zookeeper_version }}.tar.gz
-           dest=/root/zookeeper-{{ zookeeper_version }}.tar.gz
+           dest=/var/tmp/zookeeper-{{ zookeeper_version }}.tar.gz
 
 - name: Extract zookeeper
   command: tar xzf zookeeper-{{ zookeeper_version }}.tar.gz
-           chdir=/root
-           creates=/root/zookeeper-{{ zookeeper_version }}
+           chdir=/var/tmp
+           creates=/var/tmp/zookeeper-{{ zookeeper_version }}
 
 - name: Install packages required for building a zookeeper package
   apt: pkg={{ item }} state=present
@@ -21,17 +21,17 @@
     - build-essential
 
 - name: Remove sun-java6-jre dependency
-  lineinfile: dest="/root/zookeeper-{{ zookeeper_version }}/src/packages/deb/zookeeper.control/control"
+  lineinfile: dest="/var/tmp/zookeeper-{{ zookeeper_version }}/src/packages/deb/zookeeper.control/control"
               regexp="^Depends"
               state=absent
 
 - name: Create zookeeper debian package
   command: ant deb
-           chdir=/root/zookeeper-{{ zookeeper_version }}
-           creates=/root/zookeeper-{{ zookeeper_version }}/build/zookeeper_{{ zookeeper_version }}-1_amd64.deb
+           chdir=/var/tmp/zookeeper-{{ zookeeper_version }}
+           creates=/var/tmp/zookeeper-{{ zookeeper_version }}/build/zookeeper_{{ zookeeper_version }}-1_amd64.deb
 
 - name: Install zookeeper
-  apt: deb="/root/zookeeper-{{ zookeeper_version }}/build/zookeeper_{{ zookeeper_version }}-1_amd64.deb"
+  apt: deb="/var/tmp/zookeeper-{{ zookeeper_version }}/build/zookeeper_{{ zookeeper_version }}-1_amd64.deb"
        state=installed
 
 - name: Fix zookeeper startup script to be ran by bash
