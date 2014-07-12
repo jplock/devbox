@@ -52,6 +52,14 @@
               group=root
               mode=644
 
+- name: Advertise on localhost
+  lineinfile: dest=/usr/local/kafka/config/server.properties
+              line="advertised.host.name=localhost"
+              regexp="^advertised.host.name"
+              insertafter="^#advertised.host.name"
+              state=present
+  notify: restart kafka
+
 - name: Copy upstart script into place
   copy: src=etc_init_kafka.conf
         dest=/etc/init/kafka.conf
