@@ -38,7 +38,7 @@ zookeeper_version: 3.4.6
 elasticsearch_version: 1.2
 
 # riak
-riak_version: 1.4.9-1
+riak_version: 1.4.10-1
 
 # mongodb
 mongodb_version: 2.6.3
