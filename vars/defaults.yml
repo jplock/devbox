@@ -44,7 +44,7 @@ riak_version: 1.4.10-1
 mongodb_version: 2.6.3
 
 # docker
-docker_version: 1.1.1
+docker_version: 1.1.2
 
 # rabbitmq
 rabbitmq_version: 3.3.4-1
@@ -53,14 +53,14 @@ rabbitmq_version: 3.3.4-1
 mysql_version: 5.5.37-0ubuntu0.14.04.1
 
 # postgresql
-postgresql_version: 9.3.4-1.pgdg14.04+1
+postgresql_version: 9.3.5-1.pgdg14.04+1
 
 # mesos
-mesos_version: 0.19.0-1.1.ubuntu1404
-mesos_egg_version: 0.19.0_rc2
+mesos_version: 0.19.1-1.0.ubuntu1404
+mesos_egg_version: 0.19.1
 
 # deimos
-deimos_version: 0.3.4
+deimos_version: 0.4.0
 
 # marathon
-marathon_version: 0.6.0
+marathon_version: 0.6.1-1.1
