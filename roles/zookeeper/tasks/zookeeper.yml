@@ -49,10 +49,7 @@
   notify: restart zookeeper
 
 - name: Set the zookeeper node ID
-  lineinfile: dest=/var/lib/zookeeper/data/myid
-              line='1'
-              create=yes
-              state=present
+  copy: content='1' dest=/var/lib/zookeeper/data/myid
   notify: restart zookeeper
 
 - name: Ensure Zookeeper is running and enabled
