@@ -22,25 +22,9 @@
   command: easy_install /var/tmp/mesos-{{ mesos_egg_version }}-py2.7-linux-x86_64.egg
            creates=/usr/local/lib/python2.7/dist-packages/mesos-{{ mesos_egg_version }}-py2.7-linux-x86_64.egg
 
-- name: Install Deimos
-  pip: name=deimos version={{ deimos_version }} state=present
-
-- name: Configure Deimos as the Mesos Slave container
-  lineinfile: dest=/etc/mesos-slave/containerizer_path
-              line='/usr/local/bin/deimos'
-              create=yes
-              state=present
-  notify: restart mesos slave
-
-- name: Configure the Mesos Slave to use external containers
-  lineinfile: dest=/etc/mesos-slave/isolation
-              line='external'
-              create=yes
-              state=present
-  notify: restart mesos slave
-
-- name: Create temporary deimos directory
-  file: path=/tmp/deimos state=directory owner=root group=root
+- name: Configure the Mesos Slave containerizers value
+  copy: content='mesos,docker'
+        dest=/etc/mesos-slave/containerizers
   notify: restart mesos slave
 
 - name: Ensure Mesos Master is running and enabled
