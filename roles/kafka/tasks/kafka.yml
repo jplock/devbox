@@ -43,15 +43,6 @@
         owner=kafka
         group=kafka
 
-- name: Enable Kafka
-  lineinfile: dest=/etc/default/kafka
-              line="KAFKA_ENABLED=yes"
-              state=present
-              create=yes
-              owner=root
-              group=root
-              mode=644
-
 - name: Advertise on localhost
   lineinfile: dest=/usr/local/kafka/config/server.properties
               line="advertised.host.name=localhost"
