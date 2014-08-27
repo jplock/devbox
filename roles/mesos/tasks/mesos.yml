@@ -8,23 +8,17 @@
   apt_repository: repo='deb http://repos.mesosphere.io/ubuntu/ trusty main'
                   state=present
 
-- name: Install Mesos dependencies
-  apt: pkg=python-protobuf state=present
-
 - name: Install Mesos
   apt: pkg=mesos={{ mesos_version }} state=present update_cache=yes
 
-- name: Download Mesos Python Egg
-  get_url: url='http://downloads.mesosphere.io/master/ubuntu/14.04/mesos-{{ mesos_egg_version }}-py2.7-linux-x86_64.egg'
-           dest=/var/tmp/mesos-{{ mesos_egg_version }}-py2.7-linux-x86_64.egg
-
-- name: Install Mesos Python Egg
-  command: easy_install /var/tmp/mesos-{{ mesos_egg_version }}-py2.7-linux-x86_64.egg
-           creates=/usr/local/lib/python2.7/dist-packages/mesos-{{ mesos_egg_version }}-py2.7-linux-x86_64.egg
-
 - name: Configure the Mesos Slave containerizers value
-  copy: content='mesos,docker'
+  copy: content='docker,mesos'
         dest=/etc/mesos-slave/containerizers
+  notify: restart mesos slave
+
+- name: Configure the Mesos Slave executor_registration_timeout value
+  copy: content='5mins'
+        dest=/etc/mesos-slave/executor_registration_timeout
   notify: restart mesos slave
 
 - name: Ensure Mesos Master is running and enabled
