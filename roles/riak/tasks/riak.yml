@@ -11,30 +11,50 @@
   apt: pkg=riak={{ riak_version }} state=present update_cache=yes
 
 - name: Copy app.config into place
-  copy: src=etc_riak_app.config dest=/etc/riak/app.config owner=riak group=riak
+  copy: src=etc_riak_app.config
+        dest=/etc/riak/app.config
+        owner=riak
+        group=riak
   notify: restart riak
 
 - name: Create /etc/default/riak
-  copy: content="ulimit -n 65536" dest=/etc/default/riak owner=root group=root mode=644
+  copy: content="ulimit -n 65536"
+        dest=/etc/default/riak
+        owner=root
+        group=root
+        mode=644
   notify: restart riak
 
 - name: Enable Erlang VM scheduler tuning
-  lineinfile: dest=/etc/riak/vm.args regexp="^\+sfwi" insertafter="^##\+sfwi" line="+sfwi 500" state=present
+  lineinfile: dest=/etc/riak/vm.args regexp="^\+sfwi"
+              insertafter="^##\+sfwi"
+              line="+sfwi 500"
+              state=present
   notify: restart riak
 
 - name: Increase sender-side network distribution
-  lineinfile: dest=/etc/riak/vm.args regexp="^\+zdbbl" insertafter="^##\+zdbbl" line="+zdbbl 32768" state=present
+  lineinfile: dest=/etc/riak/vm.args regexp="^\+zdbbl"
+              insertafter="^##\+zdbbl"
+              line="+zdbbl 32768"
+              state=present
   notify: restart riak
 
 - name: Update open file limits for Riak
-  lineinfile: dest=/etc/security/limits.conf regexp="{{ item.regexp }}" line="{{ item.line }}" state=present
+  lineinfile: dest=/etc/security/limits.conf
+              regexp="{{ item.regexp }}"
+              line="{{ item.line }}"
+              state=present
   with_items:
     - { regexp: "^riak soft", line: "riak soft nofile 4096" }
     - { regexp: "^riak hard", line: "riak hard nofile 65536" }
   notify: restart riak
 
 - name: Optimize Riak sysctl settings
-  sysctl: name="{{ item.name }}" value={{ item.value }} state=present sysctl_set=yes reload=yes
+  sysctl: name="{{ item.name }}"
+          value={{ item.value }}
+          state=present
+          sysctl_set=yes
+          reload=yes
   with_items:
     - { name: "vm.swappiness",                value: 0 }
     - { name: "net.ipv4.tcp_max_syn_backlog", value: 40000 }
@@ -54,7 +74,10 @@
 
 # Was not able to set these using the sysctl module
 - name: Add additional Riak sysctl settings
-  lineinfile: dest=/etc/sysctl.conf regexp="{{ item.regexp }}" line="{{ item.line }}" state=present
+  lineinfile: dest=/etc/sysctl.conf
+              regexp="{{ item.regexp }}"
+              line="{{ item.line }}"
+              state=present
   with_items:
     - { regexp: "^net.ipv4.tcp_mem",  line: "net.ipv4.tcp_mem = 134217728 134217728 134217728" }
     - { regexp: "^net.ipv4.tcp_rmem", line: "net.ipv4.tcp_rmem = 4096 277750 134217728" }

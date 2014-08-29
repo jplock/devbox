@@ -5,7 +5,8 @@
   apt_key: url=https://get.docker.io/gpg id=A88D21E9 state=present
 
 - name: Add Docker repository
-  apt_repository: repo='deb http://get.docker.io/ubuntu docker main' state=present
+  apt_repository: repo='deb http://get.docker.io/ubuntu docker main'
+                  state=present
 
 - name: Install Docker
   apt: pkg=lxc-docker={{ docker_version }} state=present update_cache=yes
