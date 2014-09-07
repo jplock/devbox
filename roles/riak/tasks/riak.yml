@@ -1,18 +1,19 @@
 ---
 # Installs Riak
 
-- name: Ensure repository key for Riak is in place
-  apt_key: url=http://apt.basho.com/gpg/basho.apt.key id=DDF2E833 state=present
+- name: Ensure repository key for packagecloud.io is in place
+  apt_key: url=https://packagecloud.io/gpg.key id=D59097AB state=present
 
-- name: Add Riak repository
-  apt_repository: repo='deb http://apt.basho.com precise main' state=present
+- name: Add packagecloud.io repository
+  apt_repository: repo="deb https://packagecloud.io/basho/riak/ubuntu/ trusty main"
+                  state=present
 
 - name: Install Riak
   apt: pkg=riak={{ riak_version }} state=present update_cache=yes
 
-- name: Copy app.config into place
-  copy: src=etc_riak_app.config
-        dest=/etc/riak/app.config
+- name: Copy riak.conf into place
+  copy: src=etc_riak_riak.conf
+        dest=/etc/riak/riak.conf
         owner=riak
         group=riak
   notify: restart riak
@@ -25,27 +26,13 @@
         mode=644
   notify: restart riak
 
-- name: Enable Erlang VM scheduler tuning
-  lineinfile: dest=/etc/riak/vm.args regexp="^\+sfwi"
-              insertafter="^##\+sfwi"
-              line="+sfwi 500"
-              state=present
-  notify: restart riak
-
-- name: Increase sender-side network distribution
-  lineinfile: dest=/etc/riak/vm.args regexp="^\+zdbbl"
-              insertafter="^##\+zdbbl"
-              line="+zdbbl 32768"
-              state=present
-  notify: restart riak
-
 - name: Update open file limits for Riak
   lineinfile: dest=/etc/security/limits.conf
               regexp="{{ item.regexp }}"
               line="{{ item.line }}"
               state=present
   with_items:
-    - { regexp: "^riak soft", line: "riak soft nofile 4096" }
+    - { regexp: "^riak soft", line: "riak soft nofile 65536" }
     - { regexp: "^riak hard", line: "riak hard nofile 65536" }
   notify: restart riak
 
@@ -56,7 +43,10 @@
           sysctl_set=yes
           reload=yes
   with_items:
+    - { name: "fs.file-max",                  value: 65536 }
     - { name: "vm.swappiness",                value: 0 }
+    - { name: "vm.dirty_bytes",               value: 209715200 }
+    - { name: "vm.dirty_background_bytes",    value: 104857600 }
     - { name: "net.ipv4.tcp_max_syn_backlog", value: 40000 }
     - { name: "net.core.somaxconn",           value: 40000 }
     - { name: "net.ipv4.tcp_sack",            value: 1 }
