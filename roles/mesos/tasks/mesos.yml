@@ -1,5 +1,5 @@
 ---
-# Installs Mesos and Deimos
+# Installs Mesos
 
 - name: Ensure repository key for Mesos is in place
   apt_key: id=E56151BF keyserver=keyserver.ubuntu.com state=present
