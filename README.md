@@ -18,7 +18,13 @@ Ansible playbook for a development VM running various services. You can exclude 
 * [Mesos](http://mesos.apache.org) v0.20.0
 * [Marathon](https://mesosphere.github.io/marathon/) v0.6.1
 
+### Dependencies
+
+* [Vagrant](http://www.vagrantup.com)
+* [VirtualBox](https://www.virtualbox.org)
+
 ### Getting Started
 
-1. Git clone the `devbox` git repo
-2. Run `vagrant up` to launch a new Vagrant VM
+1. `git clone https://github.com/jplock/devbox.git`
+2. `cd devbox`
+3. `vagrant up`
