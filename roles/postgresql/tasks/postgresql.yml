@@ -30,6 +30,12 @@
               state=present
   notify: restart postgresql
 
+# Set the defaul password to postgres
+#
+# sudo -u postgres psql postgres
+#
+# \password postgres
+
 - name: Ensure PostgreSQL is running and enabled
   service: name=postgresql state=started enabled=yes
   notify: set postgres password
