@@ -11,7 +11,7 @@ Ansible playbook for a development VM running various services. You can exclude 
 * [MySQL](http://www.mysql.org) v5.5.37
 * [Redis](http://www.redis.io) v2.8.17
 * [Zookeeper](http://zookeeper.apache.org) v3.4.6
-* [ElasticSearch](http://www.elasticsearch.org) v1.3
+* [ElasticSearch](http://www.elasticsearch.org) v1.3.x
 * [Docker](http://www.docker.com) v1.2.0
 * [RabbitMQ](http://www.rabbitmq.com) v3.3.5
 * [Kafka](http://kafka.apache.org) v0.8.1.1
