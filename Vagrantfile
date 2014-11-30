@@ -11,6 +11,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.memory = 4096
   end
 
+  # ntop
+  config.vm.network "forwarded_port", guest: 3000, host: 3000
   # mysql
   config.vm.network "forwarded_port", guest: 3306, host: 3306
   # postgresql
@@ -29,7 +31,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 2181, host: 2181
   # elasticsearch
   config.vm.network "forwarded_port", guest: 9200, host: 9200
-  config.vm.network "forwarded_port", guest: 9300, host: 9300
   # kafka
   config.vm.network "forwarded_port", guest: 9092, host: 9092
   # mesos

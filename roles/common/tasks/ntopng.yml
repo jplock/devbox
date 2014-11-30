@@ -1,0 +1,18 @@
+---
+
+- name: Download nmon debian package
+  get_url: url=http://www.nmon.net/apt-stable/14.04/all/apt-ntop.deb
+           dest=/var/tmp/apt-ntop.deb
+
+- name: Install the nmon repository
+  apt: deb=/var/tmp/apt-ntop.deb state=installed
+
+- name: Install ntopng
+  apt: pkg={{ item }} state=present update_cache=yes
+  with_items:
+    - pfring
+    - ntopng
+    - ntopng-data
+    - nprobe
+    - n2disk
+    - nbox

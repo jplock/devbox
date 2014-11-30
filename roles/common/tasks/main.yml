@@ -13,15 +13,25 @@
     - sudo
     - tcsh
     - htop
+    - atop
     - python-software-properties
     - python-setuptools
     - python-pip
     - python-dev
+
+- name: Remove extra stuff from the trusty64 image
+  apt: pkg={{ item }} state=absent
+  with_items:
+    - chef
+    - chef-zero
+    - puppet
+    - puppet-common
 
 - name: Install unattended upgrades (Debian/Ubuntu only)
   apt: pkg=unattended-upgrades state=present
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - include: ntp.yml tags=ntp
+- include: ntopng.yml tags=ntopng
 - include: users.yml tags=users
 - include: java.yml tags=java
