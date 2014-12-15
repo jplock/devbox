@@ -14,5 +14,5 @@
     - ntopng
     - ntopng-data
     - nprobe
-    - n2disk
-    - nbox
+    #- n2disk
+    #- nbox
