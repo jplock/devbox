@@ -9,7 +9,7 @@ Ansible playbook for a development VM running various services. You can exclude 
 * [MongoDB](http://www.mongodb.org) v2.6.6
 * [PostgreSQL](http://www.postgresql.org) v9.3.5
 * [MySQL](http://www.mysql.org) v5.5.37
-* [Redis](http://www.redis.io) v2.8.17
+* [Redis](http://www.redis.io) v2.8.18
 * [Zookeeper](http://zookeeper.apache.org) v3.4.6
 * [ElasticSearch](http://www.elasticsearch.org) v1.4.x
 * [Docker](http://www.docker.com) v1.3.2
