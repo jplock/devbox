@@ -59,4 +59,4 @@ postgresql_version: 9.3.5-1.pgdg14.04+1
 mesos_version: 0.21.0-1.0.ubuntu1404
 
 # marathon
-marathon_version: 0.7.5-1.0
+marathon_version: 0.7.6-1.0
