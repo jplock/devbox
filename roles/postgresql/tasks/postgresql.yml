@@ -30,7 +30,7 @@
               state=present
   notify: restart postgresql
 
-# Set the defaul password to postgres
+# Set the default password to postgres
 #
 # sudo -u postgres psql postgres
 #
