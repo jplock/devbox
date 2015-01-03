@@ -17,6 +17,7 @@ Ansible playbook for a development VM running various services. You can exclude 
 * [Kafka](http://kafka.apache.org) v0.8.1.1
 * [Mesos](http://mesos.apache.org) v0.21.0
 * [Marathon](https://mesosphere.github.io/marathon/) v0.7.6
+* [Riemann](http://riemann.io) v0.2.6
 
 ### Dependencies
 

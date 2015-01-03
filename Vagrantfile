@@ -37,6 +37,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 5050, host: 5050
   # marathon
   config.vm.network "forwarded_port", guest: 8080, host: 8080
+  # riemann
+  config.vm.network "forwarded_port", guest: 5555, host: 5555
+  # riemann dashboard
+  config.vm.network "forwarded_port", guest: 4567, host: 4567
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "site.yml"

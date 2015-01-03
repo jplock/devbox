@@ -1,0 +1,35 @@
+---
+# Installs Riemann
+
+- name: Fetch riemann
+  get_url: url=https://aphyr.com/riemann/riemann_{{ riemann_version }}_all.deb
+           dest=/var/tmp/riemann_{{ riemann_version }}_all.deb
+
+- name: Install riemann dependencies
+  apt: pkg={{ item }} state=present
+  with_items:
+    - build-essential
+    - ruby
+    - ruby-dev
+    - libncurses5-dev
+
+- name: Install riemann
+  apt: deb=/var/tmp/riemann_{{ riemann_version }}_all.deb state=present
+
+- name: Install additional riemann tools
+  gem: name={{ item }} user_install=no state=present
+  with_items:
+    - riemann-client
+    - riemann-tools
+    - riemann-dash
+
+- name: Install the riemann configuration file
+  copy: src=etc_riemann_riemann.config
+        dest=/etc/riemann/riemann.config
+        owner=riemann
+        group=riemann
+        mode=0664
+  notify: restart riemann
+
+- name: Ensure Riemann is running and enabled
+  service: name=riemann state=started enabled=yes

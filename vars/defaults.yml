@@ -60,3 +60,6 @@ mesos_version: 0.21.0-1.0.ubuntu1404
 
 # marathon
 marathon_version: 0.7.6-1.0
+
+# riemann
+riemann_version: 0.2.6

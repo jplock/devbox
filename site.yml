@@ -21,4 +21,4 @@
     - docker
     - kafka
     - mesos
-
+    - riemann
