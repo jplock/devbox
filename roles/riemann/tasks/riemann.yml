@@ -17,7 +17,7 @@
   apt: deb=/var/tmp/riemann_{{ riemann_version }}_all.deb state=present
 
 - name: Install additional riemann tools
-  gem: name={{ item }} user_install=no state=present
+  gem: name={{ item }} user_install=no state=latest
   with_items:
     - riemann-client
     - riemann-tools
