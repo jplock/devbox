@@ -6,7 +6,7 @@ Ansible playbook for a development VM running various services. You can exclude 
 ### Current Services
 
 * [Riak](http://www.basho.com/riak) v2.0.4
-* [MongoDB](http://www.mongodb.org) v2.6.6
+* [MongoDB](http://www.mongodb.org) v2.6.7
 * [PostgreSQL](http://www.postgresql.org) v9.4.0
 * [MySQL](http://www.mysql.org) v5.5.37
 * [Redis](http://www.redis.io) v2.8.19
