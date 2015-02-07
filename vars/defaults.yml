@@ -28,6 +28,10 @@ main_user_shell: /bin/bash
 # kafka
 kafka_version: 0.8.1.1
 
+# kafkacat
+kafkacat_version: 1.1.0
+librdkafka_version: 0.8.5
+
 # redis
 redis_version: 2:2.8.19-1chl1~trusty1
 

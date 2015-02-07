@@ -1,0 +1,48 @@
+---
+# Installs kafkacat
+
+- name: Install dependencies
+  apt: pkg=zlib1g-dev state=present
+
+- name: Download librdkafka
+  git: repo=https://github.com/edenhill/librdkafka.git
+       dest=/var/tmp/librdkafka
+       version={{ librdkafka_version }}
+
+- name: Compile librdkafka
+  command: ./configure --prefix=/usr/local
+           chdir=/var/tmp/librdkafka
+           creates=/var/tmp/librdkafka/config.cache
+
+- name: Build librdkafka
+  command: make
+           chdir=/var/tmp/librdkafka
+           creates=/var/tmp/librdkafka/src/librdkafka.so.1
+
+- name: Install librdkafka
+  command: make install
+           chdir=/var/tmp/librdkafka
+           creates=/usr/local/lib/librdkafka.so.1
+
+- name: Run ldconfig
+  command: ldconfig
+
+- name: Download kafkacat
+  git: repo=https://github.com/edenhill/kafkacat.git
+       dest=/var/tmp/kafkacat
+       version={{ kafkacat_version }}
+
+- name: Compile kafkacat
+  command: ./configure --prefix=/usr/local
+           chdir=/var/tmp/kafkacat
+           creates=/var/tmp/kafkacat/config.cache
+
+- name: Build kafkacat
+  command: make
+           chdir=/var/tmp/kafkacat
+           creates=/var/tmp/kafkacat/kafkacat
+
+- name: Install kafkacat
+  command: make install
+           chdir=/var/tmp/kafkacat
+           creates=/usr/local/bin/kafkacat
