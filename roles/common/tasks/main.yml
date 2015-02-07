@@ -18,6 +18,8 @@
     - python-setuptools
     - python-pip
     - python-dev
+    - build-essential
+    - git
 
 - name: Remove extra stuff from the trusty64 image
   apt: pkg={{ item }} state=absent
