@@ -18,6 +18,7 @@ Ansible playbook for a development VM running various services. You can exclude 
 * [Mesos](http://mesos.apache.org) v0.21.1
 * [Marathon](https://mesosphere.github.io/marathon/) v0.8.0
 * [Riemann](http://riemann.io) v0.2.7
+* [InfluxDB](http://influxdb.com) v0.9.0-rc2
 
 ### Dependencies
 

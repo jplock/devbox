@@ -41,6 +41,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 5555, host: 5555
   # riemann dashboard
   config.vm.network "forwarded_port", guest: 4567, host: 4567
+  # influxdb
+  config.vm.network "forwarded_port", guest: 8083, host: 8083
+  config.vm.network "forwarded_port", guest: 8086, host: 8086
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "site.yml"

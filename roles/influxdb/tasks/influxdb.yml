@@ -1,0 +1,19 @@
+---
+
+- name: Download influxdb
+  get_url: url=http://s3.amazonaws.com/influxdb/influxdb_{{ influxdb_version }}_amd64.deb
+           dest=/var/tmp/influxdb_{{ influxdb_version }}_amd64.deb
+
+- name: Install influxdb
+  apt: deb=/var/tmp/influxdb_{{ influxdb_version }}_amd64.deb state=present
+
+- name: Install the influxdb configuration file
+  copy: src=etc_opt_influxdb_influxdb.conf
+        dest=/etc/opt/influxdb/influxdb.conf
+        owner=root
+        group=root
+        mode=0644
+  notify: restart influxdb
+
+- name: Ensure influxdb is running and enabled
+  service: name=influxdb state=started enabled=yes
