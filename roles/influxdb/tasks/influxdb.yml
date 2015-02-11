@@ -1,4 +1,5 @@
 ---
+# Installs InfluxDB
 
 - name: Download influxdb
   get_url: url=http://s3.amazonaws.com/influxdb/influxdb_{{ influxdb_version }}_amd64.deb
