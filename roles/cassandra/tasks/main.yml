@@ -1,0 +1,3 @@
+---
+
+- include: cassandra.yml tags=cassandra

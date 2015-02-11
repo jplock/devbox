@@ -19,6 +19,7 @@ Ansible playbook for a development VM running various services. You can exclude 
 * [Marathon](https://mesosphere.github.io/marathon/) v0.8.0
 * [Riemann](http://riemann.io) v0.2.7
 * [InfluxDB](http://influxdb.com) v0.9.0-rc2
+* [Cassandra](http://cassandra.apache.org) v2.1.2
 
 ### Dependencies
 

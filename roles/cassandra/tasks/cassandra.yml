@@ -1,0 +1,29 @@
+---
+# Installs Cassandra
+
+- name: Add Cassandra APT key
+  apt_key: url=http://debian.datastax.com/debian/repo_key id=B999A372 state=present
+
+- name: Add Cassandra repository
+  apt_repository: repo='deb http://debian.datastax.com/community stable main'
+                  state=present
+
+- name: Install libjna-java dependency
+  apt: pkg=libjna-java state=present
+
+- name: Install Cassandra
+  apt: pkg=cassandra={{ cassandra_version }} state=present update_cache=yes
+
+- name: Install optional tools
+  apt: pkg=cassandra-tools state=present
+
+- name: Install the cassandra configuration file
+  copy: src=etc_cassandra_cassandra.yaml
+        dest=/etc/cassandra/cassandra.yaml
+        owner=root
+        group=root
+        mode=0644
+  notify: restart cassandra
+
+- name: Ensure cassandra is running and enabled
+  service: name=cassandra state=started enabled=yes
