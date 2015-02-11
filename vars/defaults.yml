@@ -51,7 +51,7 @@ mongodb_version: 2.6.7
 docker_version: 1.4.1
 
 # rabbitmq
-rabbitmq_version: 3.4.3-1
+rabbitmq_version: 3.4.4-1
 
 # mysql
 mysql_version: 5.5.37-0ubuntu0.14.04.1
