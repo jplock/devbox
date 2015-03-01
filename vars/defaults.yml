@@ -6,17 +6,10 @@
 
 # ntp
 ntp_servers:
-  # use nearby ntp servers by default
-  - 0.pool.ntp.org
-  - 1.pool.ntp.org
-  - 2.pool.ntp.org
-  - 3.pool.ntp.org
-  # use servers tailored to the server location
-  # See http://www.pool.ntp.org/en/use.html
-  # - 0.north-america.pool.ntp.org
-  # - 1.north-america.pool.ntp.org
-  # - 2.north-america.pool.ntp.org
-  # - 3.north-america.pool.ntp.org
+  - 0.north-america.pool.ntp.org
+  - 1.north-america.pool.ntp.org
+  - 2.north-america.pool.ntp.org
+  - 3.north-america.pool.ntp.org
 
 # disk
 block_device: sda
@@ -24,52 +17,3 @@ block_device: sda
 # users
 # main_user_name: 
 main_user_shell: /bin/bash
-
-# kafka
-kafka_version: 0.8.2.0
-
-# kafkacat
-kafkacat_version: 1.1.0
-librdkafka_version: 0.8.5
-
-# redis
-redis_version: 2:2.8.19-1chl1~trusty1
-
-# zookeeper
-zookeeper_version: 3.4.6
-
-# elasticsearch
-elasticsearch_version: 1.4
-
-# riak
-riak_version: 2.0.4-1
-
-# mongodb
-mongodb_version: 2.6.7
-
-# docker
-docker_version: 1.4.1
-
-# rabbitmq
-rabbitmq_version: 3.4.4-1
-
-# mysql
-mysql_version: 5.5.37-0ubuntu0.14.04.1
-
-# postgresql
-postgresql_version: 9.4.1-1.pgdg14.04+1
-
-# mesos
-mesos_version: 0.21.1-1.1.ubuntu1404
-
-# marathon
-marathon_version: 0.8.0-1.1.97.ubuntu1404
-
-# riemann
-riemann_version: 0.2.7
-
-# influxdb
-influxdb_version: 0.9.0-rc2
-
-# cassandra
-cassandra_version: 2.1.2
