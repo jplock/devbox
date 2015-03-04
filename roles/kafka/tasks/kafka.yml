@@ -43,12 +43,12 @@
         owner=kafka
         group=kafka
 
-- name: Advertise on localhost
-  lineinfile: dest=/usr/local/kafka/config/server.properties
-              line="advertised.host.name=localhost"
-              regexp="^advertised.host.name"
-              insertafter="^#advertised.host.name"
-              state=present
+- name: Copy kafka server.properties into place
+  copy: src=usr_local_kafka_config_server.properties
+        dest=/usr/local/kafka/config/server.properties
+        owner=kafka
+        group=kafka
+        mode=644
   notify: restart kafka
 
 - name: Copy upstart script into place
@@ -56,7 +56,7 @@
         dest=/etc/init/kafka.conf
         owner=root
         group=root
-        mode=640
+        mode=644
   notify: restart kafka
 
 - name: Ensure Kafka is running and enabled
