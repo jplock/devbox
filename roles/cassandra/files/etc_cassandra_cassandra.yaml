@@ -364,7 +364,7 @@ ssl_storage_port: 7001
 # address associated with the hostname (it might not be).
 #
 # Setting listen_address to 0.0.0.0 is always wrong.
-listen_address: 0.0.0.0
+listen_address: 127.0.0.1
 # listen_interface: eth0
 
 # Address to broadcast to other Cassandra nodes
@@ -405,8 +405,8 @@ start_rpc: true
 #
 # Note that unlike listen_address, you can specify 0.0.0.0, but you must also
 # set broadcast_rpc_address to a value other than 0.0.0.0.
-rpc_address: localhost
-# rpc_interface: eth1
+rpc_address: 0.0.0.0
+# rpc_interface: eth0
 
 # port for Thrift to listen for clients on
 rpc_port: 9160
@@ -415,7 +415,7 @@ rpc_port: 9160
 # be set to 0.0.0.0. If left blank, this will be set to the value of
 # rpc_address. If rpc_address is set to 0.0.0.0, broadcast_rpc_address must
 # be set.
-# broadcast_rpc_address: 1.2.3.4
+broadcast_rpc_address: 127.0.0.1
 
 # enable or disable keepalive on rpc/native connections
 rpc_keepalive: true
