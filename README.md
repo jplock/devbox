@@ -18,6 +18,7 @@ Ansible playbook for a development VM running various services. You can exclude 
 * [Mesos](http://mesos.apache.org) v0.22.0 (port 5050)
 * [Marathon](https://mesosphere.github.io/marathon/) v0.8.1 (port 8080)
 * [Riemann](http://riemann.io) v0.2.9 (port 5555)
+* [RethinkDB](http://rethinkdb.com) v2.0 (port 28015)
 * [InfluxDB](http://influxdb.com) v0.9.0-rc10 (port 8086)
 * [Cassandra](http://cassandra.apache.org) v2.1.4 (port 9042)
 
@@ -26,6 +27,7 @@ Ansible playbook for a development VM running various services. You can exclude 
 * [RabbitMQ](http://www.rabbitmq.com/management.html) management console is at [http://127.0.0.1:15672](http://127.0.0.1:15672) (username: guest, password: guest)
 * [Riak Control](http://docs.basho.com/riak/latest/ops/advanced/riak-control/) is at [http://127.0.0.1:8098/admin](http://127.0.0.1:8098/admin)
 * [InfluxDB](http://influxdb.com/docs/v0.8/introduction/getting_started.html) is at [http://127.0.0.1:8083](http://127.0.0.1:8083) (username: root, password: root)
+* [RethinkDB](http://rethinkdb.com/docs/quickstart/) is at [http://127.0.0.1:8180](http://127.0.0.1:8180)
 * [Marathon](https://mesosphere.github.io/marathon/docs/) is at [http://127.0.0.1:8080](http://127.0.0.1:8080)
 * Mesos WebUI is at [http://127.0.0.1:5050](http://127.0.0.1:5050)
 

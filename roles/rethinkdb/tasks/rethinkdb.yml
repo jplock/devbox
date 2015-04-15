@@ -1,0 +1,25 @@
+---
+# Installs RethinkDB
+
+- name: Add RethinkDB repository
+  apt_repository: repo='deb http://download.rethinkdb.com/apt trusty main'
+                  state=present
+
+- name: Add RethinkDB apt key
+  apt_key: url=http://download.rethinkdb.com/apt/pubkey.gpg
+           id=3A8F2399
+           state=present
+
+- name: Install RethinkDB
+  apt: pkg=rethinkdb={{ rethinkdb_version }} state=present update_cache=yes
+
+- name: Copy RethinkDB default.conf into place
+  copy: src=etc_rethinkdb_instances.d_default.conf
+        dest=/etc/rethinkdb/instances.d/default.conf
+        owner=root
+        group=root
+        mode=644
+  notify: restart rethinkdb
+
+- name: Ensure rethinkdb is running and enabled
+  service: name=rethinkdb state=started enabled=yes

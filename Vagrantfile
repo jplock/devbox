@@ -46,6 +46,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 8086, host: 8086
   # cassandra
   config.vm.network "forwarded_port", guest: 9042, host: 9042
+  # rethinkdb
+  config.vm.network "forwarded_port", guest: 28015, host: 28015
+  config.vm.network "forwarded_port", guest: 8180, host: 8180
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "site.yml"
