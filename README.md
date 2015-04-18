@@ -5,7 +5,7 @@ Ansible playbook for a development VM running various services. You can exclude 
 
 ### Current Services
 
-* [Riak](http://www.basho.com/riak) v2.0.5 (ports 8087 and 8098)
+* [Riak](http://www.basho.com/riak) v2.1.0 (ports 8087 and 8098)
 * [MongoDB](http://www.mongodb.org) v3.0.2 (port 27017)
 * [PostgreSQL](http://www.postgresql.org) v9.4.1 (port 5432)
 * [MySQL](http://www.mysql.org) v5.5.37 (port 3306)
