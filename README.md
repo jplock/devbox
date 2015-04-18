@@ -12,7 +12,7 @@ Ansible playbook for a development VM running various services. You can exclude 
 * [Redis](http://www.redis.io) v3.0.0 (port 6379)
 * [Zookeeper](http://zookeeper.apache.org) v3.4.6 (port 2181)
 * [ElasticSearch](http://www.elasticsearch.org) v1.5.x (port 9200)
-* [Docker](http://www.docker.com) v1.5.0
+* [Docker](http://www.docker.com) v1.6.0
 * [RabbitMQ](http://www.rabbitmq.com) v3.5.1 (port 5672)
 * [Kafka](http://kafka.apache.org) v0.8.2.1 (port 9092)
 * [Mesos](http://mesos.apache.org) v0.22.0 (port 5050)
