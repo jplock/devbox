@@ -20,7 +20,7 @@ Ansible playbook for a development VM running various services. You can exclude 
 * [Riemann](http://riemann.io) v0.2.9 (port 5555)
 * [RethinkDB](http://rethinkdb.com) v2.0.1 (port 28015)
 * [InfluxDB](http://influxdb.com) v0.9.0-rc25 (port 8086)
-* [Cassandra](http://cassandra.apache.org) v2.1.4 (port 9042)
+* [Cassandra](http://cassandra.apache.org) v2.1.5 (port 9042)
 
 ### Administration
 
