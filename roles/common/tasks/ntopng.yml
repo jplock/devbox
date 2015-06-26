@@ -5,7 +5,7 @@
            dest=/var/tmp/apt-ntop.deb
 
 - name: Install the nmon repository
-  apt: deb=/var/tmp/apt-ntop.deb state=installed
+  apt: deb=/var/tmp/apt-ntop.deb state=present
 
 - name: Install ntopng
   apt: pkg={{ item }} state=present update_cache=yes

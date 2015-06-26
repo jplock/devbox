@@ -34,6 +34,6 @@
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - include: ntp.yml tags=ntp
-- include: ntopng.yml tags=ntopng
+#- include: ntopng.yml tags=ntopng
 - include: users.yml tags=users
 - include: java.yml tags=java
