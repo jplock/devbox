@@ -4,4 +4,7 @@
   user: name={{ main_user_name }} state=present shell={{ main_user_shell }} groups=sudo,vboxsf
 
 - name: Ensure the vagrant user is always a member of the proper groups
-  user: name=vagrant state=present groups=adm,cdrom,sudo,dip,plugdev,admin,vboxsf append=yes
+  user: name=vagrant
+        state=present
+        groups=adm,cdrom,sudo,dip,plugdev,admin,vboxsf
+        append=yes

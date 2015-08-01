@@ -8,15 +8,24 @@
   apt: pkg=redis-server={{ redis_version }} state=present update_cache=yes
 
 - name: Listen on all interfaces
-  lineinfile: dest=/etc/redis/redis.conf regexp="^bind" line="bind 0.0.0.0" state=present
+  lineinfile: dest=/etc/redis/redis.conf
+              regexp="^bind"
+              line="bind 0.0.0.0"
+              state=present
   notify: restart redis
 
 - name: Enable keepalives
-  lineinfile: dest=/etc/redis/redis.conf regexp="^tcp-keepalive" line="tcp-keepalive 60" state=present
+  lineinfile: dest=/etc/redis/redis.conf
+              regexp="^tcp-keepalive"
+              line="tcp-keepalive 60"
+              state=present
   notify: restart redis
 
 - name: Adjust ulimit
-  lineinfile: dest=/etc/default/redis-server regexp="^# ULIMIT" line="ULIMIT=65536" state=present
+  lineinfile: dest=/etc/default/redis-server
+              regexp="^# ULIMIT"
+              line="ULIMIT=65536"
+              state=present
   notify: restart redis
 
 - name: Ensure redis is running and enabled

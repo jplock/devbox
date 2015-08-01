@@ -5,7 +5,10 @@
   apt_repository: repo='ppa:webupd8team/java' state=present
 
 - name: Accept oracle license
-  debconf: name='oracle-java8-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
+  debconf: name='oracle-java8-installer'
+           question='shared/accepted-oracle-license-v1-1'
+           value='true'
+           vtype='select'
 
 - name: Install Oracle JRE
   apt: pkg={{ item }} state=present update_cache=yes
