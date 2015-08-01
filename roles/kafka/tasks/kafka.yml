@@ -18,9 +18,9 @@
            dest=/usr/local/kafka_2.10-{{ kafka_version }}.tgz
 
 - name: Extract kafka
-  command: tar xzf kafka_2.10-{{ kafka_version }}.tgz
-           chdir=/usr/local
-           creates=/usr/local/kafka_2.10-{{ kafka_version }}
+  unarchive: src=kafka_2.10-{{ kafka_version }}.tgz
+             dest=/usr/local
+             creates=/usr/local/kafka_2.10-{{ kafka_version }}
 
 - name: Symlink kafka
   file: src=/usr/local/kafka_2.10-{{ kafka_version }}
