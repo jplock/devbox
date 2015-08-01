@@ -6,9 +6,9 @@
            dest=/var/tmp/zookeeper-{{ zookeeper_version }}.tar.gz
 
 - name: Extract zookeeper
-  command: tar xzf zookeeper-{{ zookeeper_version }}.tar.gz
-           chdir=/var/tmp
-           creates=/var/tmp/zookeeper-{{ zookeeper_version }}
+  unarchive: src=zookeeper-{{ zookeeper_version }}.tar.gz
+             dest=/var/tmp
+             creates=/var/tmp/zookeeper-{{ zookeeper_version }}
 
 - name: Install packages required for building a zookeeper package
   apt: pkg={{ item }} state=present
