@@ -7,7 +7,7 @@ Ansible playbook for a development VM running various services. You can exclude 
 ### Current Services
 
 * [Cassandra](http://cassandra.apache.org) v2.2.0 (port 9042)
-* [Docker](http://www.docker.com) v1.7.1
+* [Docker](http://www.docker.com) v1.8.1
 * [ElasticSearch](http://www.elasticsearch.org) v1.7.x (port 9200)
 * [Kafka](http://kafka.apache.org) v0.8.2.1 (port 9092)
 * [InfluxDB](http://influxdb.com) v0.9.2 (port 8086)
