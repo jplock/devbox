@@ -12,7 +12,7 @@ Ansible playbook for a development VM running various services. You can exclude 
 * [Kafka](http://kafka.apache.org) v0.8.2.1 (port 9092)
 * [InfluxDB](http://influxdb.com) v0.9.3 (port 8086)
 * [Marathon](https://mesosphere.github.io/marathon/) v0.10.1 (port 8080)
-* [Mesos](http://mesos.apache.org) v0.23.0 (port 5050)
+* [Mesos](http://mesos.apache.org) v0.24.1 (port 5050)
 * [MongoDB](http://www.mongodb.org) v3.0.6 (port 27017)
 * [MySQL](http://www.mysql.org) v5.5.44 (port 3306)
 * [PostgreSQL](http://www.postgresql.org) v9.4.4 (port 5432)
