@@ -1,12 +1,15 @@
 ---
 # Installs InfluxDB
 
-- name: Download influxdb
-  get_url: url=http://s3.amazonaws.com/influxdb/influxdb_{{ influxdb_version }}_amd64.deb
-           dest=/var/tmp/influxdb_{{ influxdb_version }}_amd64.deb
+- name: Add the influxdb apt key
+  apt_key: url=https://repos.influxdata.com/influxdb.key id=2582E0C5 state=present
+
+- name: Add the influxdb apt repository
+  apt_repository: repo='deb https://repos.influxdata.com/ubuntu trusty stable'
+                  state=present
 
 - name: Install influxdb
-  apt: deb=/var/tmp/influxdb_{{ influxdb_version }}_amd64.deb state=present
+  apt: name=influxdb={{ influxdb_version }} state=present update_cache=yes
 
 - name: Install the influxdb configuration file
   copy: src=etc_opt_influxdb_influxdb.conf
