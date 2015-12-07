@@ -1,0 +1,33 @@
+---
+# Installs Kong
+
+- name: Download kong
+  get_url: url=https://github.com/Mashape/kong/releases/download/{{ kong_version }}/kong-{{ kong_version }}.trusty_all.deb
+           dest=/var/tmp/kong-{{ kong_version }}.trusty_all.deb
+
+- name: Install kong dependencies
+  apt: pkg={{ item }} state=present
+  with_items:
+    - netcat
+    - lua5.1
+    - openssl
+    - libpcre3
+    - dnsmasq
+
+- name: Install kong
+  apt: deb=/var/tmp/kong-{{ kong_version }}.trusty_all.deb state=present
+  notify: restart kong
+
+- name: Install the kong configuration file
+  copy: src=etc_kong_kong.yml
+        dest=/etc/kong/kong.yml
+        owner=root
+        group=root
+        mode=0644
+  notify: restart kong
+
+- name: Symlink the kong startup command
+  file: src=/usr/local/bin/kong dest=/etc/init.d/kong state=link
+
+- name: Ensure kong is running and enabled
+  service: name=kong state=started enabled=yes

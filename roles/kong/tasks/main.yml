@@ -1,0 +1,3 @@
+---
+
+- include: kong.yml tags=kong

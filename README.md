@@ -10,6 +10,7 @@ Ansible playbook for a development VM running various services. You can exclude 
 * [Docker](http://www.docker.com) v1.9.0
 * [ElasticSearch](http://www.elasticsearch.org) v1.7.x (port 9200)
 * [Kafka](http://kafka.apache.org) v0.8.2.1 (port 9092)
+* [Kong](https://getkong.org) v0.5.3 (port 8000)
 * [InfluxDB](http://influxdb.com) v0.9.5 (port 8086)
 * [Marathon](https://mesosphere.github.io/marathon/) v0.11.1 (port 8080)
 * [Mesos](http://mesos.apache.org) v0.25.0 (port 5050)
@@ -25,6 +26,7 @@ Ansible playbook for a development VM running various services. You can exclude 
 
 ### Administration
 
+* [Kong](https://getkong.org/docs/0.5.x/admin-api/) administrative API is at [http://127.0.0.1:8001](http://127.0.0.1:8001)
 * [RabbitMQ](http://www.rabbitmq.com/management.html) management console is at [http://127.0.0.1:15672](http://127.0.0.1:15672) (username: guest, password: guest)
 * [Riak Control](http://docs.basho.com/riak/latest/ops/advanced/riak-control/) is at [http://127.0.0.1:8098/admin](http://127.0.0.1:8098/admin)
 * [InfluxDB](https://influxdb.com/docs/v0.9/introduction/overview.html) is at [http://127.0.0.1:8083](http://127.0.0.1:8083) (username: root, password: root)

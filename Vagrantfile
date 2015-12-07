@@ -49,6 +49,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # rethinkdb
   config.vm.network "forwarded_port", guest: 28015, host: 28015
   config.vm.network "forwarded_port", guest: 8180, host: 8180
+  # kong
+  config.vm.network "forwarded_port", guest: 8000, host: 8000
+  config.vm.network "forwarded_port", guest: 8001, host: 8001
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "site.yml"
