@@ -1,6 +1,12 @@
 ---
 # Installs Zookeeper
 
+- name: Remove any existing packages
+  apt: pkg={{ item }} state=absent
+  with_items:
+    - zookeeper-bin
+    - libzookeeper-mt2
+
 - name: Fetch zookeeper
   get_url: url=http://mirror.reverse.net/pub/apache/zookeeper/stable/zookeeper-{{ zookeeper_version }}.tar.gz
            dest=/var/tmp/zookeeper-{{ zookeeper_version }}.tar.gz
@@ -34,6 +40,7 @@
 - name: Install zookeeper
   apt: deb="/var/tmp/zookeeper-{{ zookeeper_version }}/build/zookeeper_{{ zookeeper_version }}-1_amd64.deb"
        state=installed
+  notify: restart zookeeper
 
 - name: Fix zookeeper startup script to be ran by bash
   lineinfile: dest=/etc/init.d/zookeeper
@@ -50,7 +57,10 @@
   notify: restart zookeeper
 
 - name: Set the zookeeper node ID
-  copy: content='1' dest=/var/lib/zookeeper/data/myid
+  copy: content="1"
+        dest=/var/lib/zookeeper/data/myid
+        owner=zookeeper
+        group=zookeeper
   notify: restart zookeeper
 
 - name: Ensure Zookeeper is running and enabled
