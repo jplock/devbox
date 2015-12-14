@@ -25,4 +25,4 @@
     - influxdb
     - cassandra
     - rethinkdb
-    - kong
+    #- kong
