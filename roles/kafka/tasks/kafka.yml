@@ -18,9 +18,10 @@
            dest=/usr/local/kafka_2.10-{{ kafka_version }}.tgz
 
 - name: Extract kafka
-  unarchive: src=kafka_2.10-{{ kafka_version }}.tgz
+  unarchive: src=/usr/local/kafka_2.10-{{ kafka_version }}.tgz
              dest=/usr/local
              creates=/usr/local/kafka_2.10-{{ kafka_version }}
+             copy=no
 
 - name: Symlink kafka
   file: src=/usr/local/kafka_2.10-{{ kafka_version }}

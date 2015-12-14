@@ -1,26 +1,16 @@
 ---
 # Installs Docker
 
-- name: Remove old Docker APT key
-  apt_key: url=https://get.docker.io/gpg id=A88D21E9 state=absent
-
-- name: Remove old Docker repository
-  apt_repository: repo='deb http://get.docker.io/ubuntu docker main'
-                  state=absent
-
-- name: Remove the old Docker package
-  apt: pkg=lxc-docker state=absent purge=yes force=yes
-
-- name: Install new Docker APT key
+- name: Install Docker APT key
   apt_key: keyserver=p80.pool.sks-keyservers.net
            id=58118E89F3A912897C070ADBF76221572C52609D
            state=present
 
-- name: Add new Docker repository
+- name: Add Docker repository
   apt_repository: repo='deb https://apt.dockerproject.org/repo ubuntu-trusty main'
                   state=present
 
-- name: Install the new Docker package
+- name: Install the Docker package
   apt: pkg=docker-engine={{ docker_version }} state=present update_cache=yes
 
 - name: Add users to docker group

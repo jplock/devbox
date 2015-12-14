@@ -12,8 +12,8 @@
   apt: name=influxdb={{ influxdb_version }} state=present update_cache=yes
 
 - name: Install the influxdb configuration file
-  copy: src=etc_opt_influxdb_influxdb.conf
-        dest=/etc/opt/influxdb/influxdb.conf
+  copy: src=etc_influxdb_influxdb.conf
+        dest=/etc/influxdb/influxdb.conf
         owner=root
         group=root
         mode=0644
