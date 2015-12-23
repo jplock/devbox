@@ -17,7 +17,7 @@ Ansible playbook for a development VM running various services. You can exclude 
 * [MongoDB](https://www.mongodb.org) v3.0.8 (port 27017)
 * [MySQL](http://dev.mysql.org) v5.5.46 (port 3306)
 * [PostgreSQL](http://www.postgresql.org) v9.4.5 (port 5432)
-* [RabbitMQ](http://www.rabbitmq.com) v3.5.7 (port 5672)
+* [RabbitMQ](http://www.rabbitmq.com) v3.6.0 (port 5672)
 * [Redis](http://www.redis.io) v3.0.6 (port 6379)
 * [RethinkDB](http://rethinkdb.com) v2.2.2 (port 28015)
 * [Riak KV](http://basho.com/products/riak-kv/) v2.1.3 (ports 8087 and 8098)
