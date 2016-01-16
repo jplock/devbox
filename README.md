@@ -22,7 +22,7 @@ Ansible playbook for a development VM running various services. You can exclude 
 * [RethinkDB](http://rethinkdb.com) v2.2.2 (port 28015)
 * [Riak KV](http://basho.com/products/riak-kv/) v2.1.3 (ports 8087 and 8098)
 * [Riemann](http://riemann.io) v0.2.9 (port 5555)
-* [Zookeeper](http://zookeeper.apache.org) v3.4.7 (port 2181)
+* [Zookeeper](http://zookeeper.apache.org) v3.4.6 (port 2181)
 
 ### Administration
 
