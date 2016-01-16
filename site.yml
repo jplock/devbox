@@ -2,7 +2,7 @@
 
 - hosts: all
   user: ubuntu
-  sudo: True
+  become: True
   gather_facts: True
   vars_files:
     - vars/defaults.yml
