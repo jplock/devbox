@@ -1,4 +1,6 @@
 ---
 
-- include: kafka.yml tags=kafka
-- include: kafkacat.yml tags=kafka
+- include: kafka.yml
+  tags: kafka
+- include: kafkacat.yml
+  tags: kafka

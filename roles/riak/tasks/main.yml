@@ -1,3 +1,4 @@
 ---
 
-- include: riak.yml tags=riak
+- include: riak.yml
+  tags: riak

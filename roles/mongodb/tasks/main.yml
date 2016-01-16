@@ -1,3 +1,4 @@
 ---
 
-- include: mongodb.yml tags=mongodb
+- include: mongodb.yml
+  tags: mongodb

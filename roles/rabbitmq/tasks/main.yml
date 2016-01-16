@@ -1,3 +1,4 @@
 ---
 
-- include: rabbitmq.yml tags=rabbitmq
+- include: rabbitmq.yml
+  tags: rabbitmq

@@ -1,3 +1,4 @@
 ---
 
-- include: kong.yml tags=kong
+- include: kong.yml
+  tags: kong

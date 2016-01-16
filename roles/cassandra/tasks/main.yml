@@ -1,3 +1,4 @@
 ---
 
-- include: cassandra.yml tags=cassandra
+- include: cassandra.yml
+  tags: cassandra

@@ -1,3 +1,4 @@
 ---
 
-- include: rethinkdb.yml tags=rethinkdb
+- include: rethinkdb.yml
+  tags: rethinkdb

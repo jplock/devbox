@@ -1,3 +1,4 @@
 ---
 
-- include: elasticsearch.yml tags=elasticsearch
+- include: elasticsearch.yml
+  tags: elasticsearch
