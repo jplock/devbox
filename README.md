@@ -6,9 +6,9 @@ Ansible playbook for a development VM running various services. You can exclude 
 
 ### Current Services
 
-* [ElasticSearch](https://www.elastic.co) v2.1.x (port 9200)
 * [Cassandra](http://cassandra.apache.org) v3.0.2 (port 9042)
 * [Docker](https://www.docker.com) v1.10.0
+* [ElasticSearch](https://www.elastic.co) v2.2.x (port 9200)
 * [Kafka](http://kafka.apache.org) v0.9.0 (port 9092)
 * [Kong](https://getkong.org) v0.5.3 (port 8000)
 * [Marathon](https://mesosphere.github.io/marathon/) v0.13.0 (port 8080)
