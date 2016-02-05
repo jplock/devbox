@@ -10,10 +10,10 @@ Ansible playbook for a development VM running various services. You can exclude 
 * [Docker](https://www.docker.com) v1.10.0
 * [ElasticSearch](https://www.elastic.co) v2.2.x (port 9200)
 * [Kafka](http://kafka.apache.org) v0.9.0 (port 9092)
-* [Kong](https://getkong.org) v0.5.3 (port 8000)
 * [Marathon](https://mesosphere.github.io/marathon/) v0.13.0 (port 8080)
 * [Mesos](http://mesos.apache.org) v0.26.0 (port 5050)
 * [MongoDB](https://www.mongodb.org) v3.0.8 (port 27017)
+* [Kong](https://getkong.org) v0.6.1 (port 8000)
 * [InfluxDB](https://influxdata.com/time-series-platform/influxdb/) v0.10.0 (port 8086)
 * [MySQL](http://dev.mysql.org) v5.5.46 (port 3306)
 * [PostgreSQL](http://www.postgresql.org) v9.5.0 (port 5432)
@@ -26,7 +26,7 @@ Ansible playbook for a development VM running various services. You can exclude 
 
 ### Administration
 
-* [Kong](https://getkong.org/docs/0.5.x/admin-api/) administrative API is at [http://127.0.0.1:8001](http://127.0.0.1:8001)
+* [Kong](https://getkong.org/docs/0.6.x/admin-api/) administrative API is at [http://127.0.0.1:8001](http://127.0.0.1:8001)
 * [RabbitMQ](http://www.rabbitmq.com/management.html) management console is at [http://127.0.0.1:15672](http://127.0.0.1:15672) (username: guest, password: guest)
 * [Riak Control](http://docs.basho.com/riak/latest/ops/advanced/riak-control/) is at [http://127.0.0.1:8098/admin](http://127.0.0.1:8098/admin)
 * [InfluxDB](https://docs.influxdata.com/influxdb/v0.9/introduction/overview/) is at [http://127.0.0.1:8083](http://127.0.0.1:8083) (username: root, password: root)
