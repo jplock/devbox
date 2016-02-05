@@ -19,7 +19,7 @@ Ansible playbook for a development VM running various services. You can exclude 
 * [PostgreSQL](http://www.postgresql.org) v9.5.0 (port 5432)
 * [RabbitMQ](http://www.rabbitmq.com) v3.6.0 (port 5672)
 * [Redis](http://www.redis.io) v3.0.6 (port 6379)
-* [RethinkDB](http://rethinkdb.com) v2.2.3 (port 28015)
+* [RethinkDB](http://rethinkdb.com) v2.2.4 (port 28015)
 * [Riak KV](http://basho.com/products/riak-kv/) v2.1.3 (ports 8087 and 8098)
 * [Riemann](http://riemann.io) v0.2.10 (port 5555)
 * [Zookeeper](http://zookeeper.apache.org) v3.4.6 (port 2181)
