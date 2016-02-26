@@ -53,14 +53,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network "forwarded_port", guest: 8000, host: 8000
   config.vm.network "forwarded_port", guest: 8001, host: 8001
 
-  config.vm.provision "ansible" do |ansible|
+  config.vm.provision "ansible_local" do |ansible|
     ansible.playbook = "site.yml"
-    ansible.host_key_checking = false
-    ansible.extra_vars = { ansible_ssh_user: "vagrant", testing: true }
-
-    #ansible.tags = [""]
-    #ansible.skip_tags = [""]
-    #ansible.verbose = "vvvv"
+    ansible.verbose = "vvvv"
+    ansible.install = true
+    #ansible.version = "2.0.0.2"
+    ansible.inventory_path = "inventory"
   end
 
 end
