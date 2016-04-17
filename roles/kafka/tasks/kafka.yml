@@ -49,7 +49,7 @@
         dest=/usr/local/kafka/config/server.properties
         owner=kafka
         group=kafka
-        mode=644
+        mode=0644
   notify: restart kafka
 
 - name: Copy upstart script into place
@@ -57,7 +57,7 @@
         dest=/etc/init/kafka.conf
         owner=root
         group=root
-        mode=644
+        mode=0644
   notify: restart kafka
 
 - name: Ensure Kafka is running and enabled

@@ -21,7 +21,7 @@
         dest=/etc/rethinkdb/instances.d/default.conf
         owner=root
         group=root
-        mode=644
+        mode=0644
   notify: restart rethinkdb
 
 - name: Ensure rethinkdb is running and enabled
