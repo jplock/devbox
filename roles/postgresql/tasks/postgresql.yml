@@ -11,7 +11,7 @@
                   state=present
 
 - name: Install PostgreSQL
-  apt: pkg={{ item }} state=present update_cache=yes
+  apt: pkg={{ item }} state=present update_cache=yes cache_valid_time=3600
   with_items:
     - "postgresql-9.5={{ postgresql_version }}"
     - postgresql-contrib-9.5

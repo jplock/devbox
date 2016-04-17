@@ -9,7 +9,10 @@
                   state=present
 
 - name: Install Riak
-  apt: pkg=riak={{ riak_version }} state=present update_cache=yes
+  apt: pkg=riak={{ riak_version }}
+       state=present
+       update_cache=yes
+       cache_valid_time=3600
 
 - name: Copy riak.conf into place
   copy: src=etc_riak_riak.conf

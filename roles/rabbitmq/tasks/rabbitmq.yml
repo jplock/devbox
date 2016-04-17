@@ -11,7 +11,10 @@
                   state=present
 
 - name: Install RabbitMQ
-  apt: pkg=rabbitmq-server={{ rabbitmq_version }} state=present update_cache=yes
+  apt: pkg=rabbitmq-server={{ rabbitmq_version }}
+       state=present
+       update_cache=yes
+       cache_valid_time=3600
 
 - name: Increase maximum open file handle limit
   lineinfile: dest=/etc/default/rabbitmq-server

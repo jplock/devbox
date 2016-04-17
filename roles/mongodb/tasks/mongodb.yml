@@ -2,10 +2,10 @@
 # Installs MongoDB
 
 - name: Ensure repository key for MongoDB is in place
-  apt_key: url=http://docs.mongodb.org/10gen-gpg-key.asc id=7F0CEB10 state=present
+  apt_key: keyserver=keyserver.ubuntu.com id=EA312927 state=present
 
 - name: Add MongoDB repository
-  apt_repository: repo='deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.0 multiverse'
+  apt_repository: repo='deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse'
                   state=present
 
 - name: Copy mongod.conf into place
@@ -17,7 +17,10 @@
   notify: restart mongodb
 
 - name: Install MongoDB
-  apt: pkg=mongodb-org={{ mongodb_version }} state=present update_cache=yes
+  apt: pkg=mongodb-org={{ mongodb_version }}
+       state=present
+       update_cache=yes
+       cache_valid_time=3600
 
 - name: Ensure MongoDB is running and enabled
   service: name=mongod state=started enabled=yes

@@ -9,7 +9,10 @@
                   state=present
 
 - name: Install Mesos
-  apt: pkg=mesos={{ mesos_version }} state=present update_cache=yes
+  apt: pkg=mesos={{ mesos_version }}
+       state=present
+       update_cache=yes
+       cache_valid_time=3600
 
 - name: Configure the Mesos Slave containerizers value
   copy: content='docker,mesos'
