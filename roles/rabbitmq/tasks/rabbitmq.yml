@@ -9,6 +9,7 @@
 - name: Add RabbitMQ repository
   apt_repository: repo='deb http://www.rabbitmq.com/debian/ testing main'
                   state=present
+                  update_cache=yes
 
 - name: Install RabbitMQ
   apt: pkg=rabbitmq-server={{ rabbitmq_version }}

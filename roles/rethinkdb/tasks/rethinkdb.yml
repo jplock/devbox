@@ -1,14 +1,15 @@
 ---
 # Installs RethinkDB
 
-- name: Add RethinkDB repository
-  apt_repository: repo='deb http://download.rethinkdb.com/apt trusty main'
-                  state=present
-
 - name: Add RethinkDB apt key
   apt_key: url=https://download.rethinkdb.com/apt/pubkey.gpg
            id=3A8F2399
            state=present
+
+- name: Add RethinkDB repository
+  apt_repository: repo='deb http://download.rethinkdb.com/apt trusty main'
+                  state=present
+                  update_cache=yes
 
 - name: Install RethinkDB
   apt: pkg=rethinkdb={{ rethinkdb_version }}

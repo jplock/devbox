@@ -9,6 +9,7 @@
 - name: Add Docker repository
   apt_repository: repo='deb https://apt.dockerproject.org/repo ubuntu-trusty main'
                   state=present
+                  update_cache=yes
 
 - name: Install the Docker package
   apt: pkg=docker-engine={{ docker_version }}

@@ -9,10 +9,10 @@
   apt: pkg={{ item }} state=present
   with_items:
     - netcat
-    - lua5.1
     - openssl
     - libpcre3
     - dnsmasq
+    - procps
 
 - name: Install kong
   apt: deb=/var/tmp/kong-{{ kong_version }}.trusty_all.deb state=present
