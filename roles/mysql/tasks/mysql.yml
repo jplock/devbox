@@ -2,7 +2,7 @@
 # Installs MySQL
 
 - name: Install MySQL
-  apt: pkg=mysql-server state=present
+  apt: pkg=mysql-server state=present update_cache=yes cache_valid_time=3600
 
 - name: Listen on all interfaces
   lineinfile: dest=/etc/mysql/my.cnf
