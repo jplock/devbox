@@ -9,6 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider "virtualbox" do |vb|
     vb.name = "devbox"
     vb.memory = 4096
+    vb.cpus = 2
   end
 
   # ntop

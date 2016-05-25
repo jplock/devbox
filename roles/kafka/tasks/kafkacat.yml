@@ -8,6 +8,7 @@
   git: repo=https://github.com/edenhill/librdkafka.git
        dest=/var/tmp/librdkafka
        version={{ librdkafka_version }}
+       force=yes
 
 - name: Compile librdkafka
   command: ./configure --prefix=/usr/local
