@@ -2,8 +2,8 @@
 # Installs RabbitMQ
 
 - name: Ensure repository key for RabbitMQ is in place
-  apt_key: url=http://www.rabbitmq.com/rabbitmq-signing-key-public.asc
-           id=056E8E56
+  apt_key: url=http://www.rabbitmq.com/rabbitmq-release-signing-key.asc
+           id=6026DFCA
            state=present
 
 - name: Add RabbitMQ repository
