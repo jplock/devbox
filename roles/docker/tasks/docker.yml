@@ -9,9 +9,13 @@
 - name: Add Docker repository
   apt_repository: repo='deb https://apt.dockerproject.org/repo ubuntu-trusty main'
                   state=present
+                  update_cache=yes
 
 - name: Install the Docker package
-  apt: pkg=docker-engine={{ docker_version }} state=present update_cache=yes
+  apt: pkg=docker-engine={{ docker_version }}
+       state=present
+       update_cache=yes
+       cache_valid_time=3600
 
 - name: Add users to docker group
   user: name={{ item }} groups=docker append=yes

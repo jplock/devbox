@@ -2,12 +2,13 @@
 # Installs kafkacat
 
 - name: Install dependencies
-  apt: pkg=zlib1g-dev state=present
+  apt: pkg=zlib1g-dev state=present update_cache=yes cache_valid_time=3600
 
 - name: Download librdkafka
   git: repo=https://github.com/edenhill/librdkafka.git
        dest=/var/tmp/librdkafka
        version={{ librdkafka_version }}
+       force=yes
 
 - name: Compile librdkafka
   command: ./configure --prefix=/usr/local

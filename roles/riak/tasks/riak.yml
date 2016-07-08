@@ -7,9 +7,13 @@
 - name: Add packagecloud.io repository
   apt_repository: repo="deb https://packagecloud.io/basho/riak/ubuntu/ trusty main"
                   state=present
+                  update_cache=yes
 
 - name: Install Riak
-  apt: pkg=riak={{ riak_version }} state=present update_cache=yes
+  apt: pkg=riak={{ riak_version }}
+       state=present
+       update_cache=yes
+       cache_valid_time=3600
 
 - name: Copy riak.conf into place
   copy: src=etc_riak_riak.conf
@@ -23,7 +27,7 @@
         dest=/etc/default/riak
         owner=root
         group=root
-        mode=644
+        mode=0644
   notify: restart riak
 
 - name: Update open file limits for Riak

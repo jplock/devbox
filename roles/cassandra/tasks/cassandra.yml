@@ -7,15 +7,19 @@
 - name: Add Cassandra repository
   apt_repository: repo='deb http://debian.datastax.com/community stable main'
                   state=present
+                  update_cache=yes
 
 - name: Install libjna-java dependency
-  apt: pkg=libjna-java state=present
+  apt: pkg=libjna-java state=present update_cache=yes cache_valid_time=3600
 
 - name: Install Cassandra
-  apt: pkg=cassandra={{ cassandra_version }} state=present update_cache=yes
+  apt: pkg=cassandra={{ cassandra_version }}
+       state=present
+       update_cache=yes
+       cache_valid_time=3600
 
 - name: Install optional tools
-  apt: pkg=cassandra-tools state=present
+  apt: pkg=cassandra-tools state=present update_cache=yes cache_valid_time=3600
 
 - name: Install the cassandra configuration file
   copy: src=etc_cassandra_cassandra.yaml

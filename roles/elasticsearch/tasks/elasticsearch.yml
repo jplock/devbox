@@ -9,9 +9,10 @@
 - name: Add ElasticSearch repository
   apt_repository: repo='deb http://packages.elasticsearch.org/elasticsearch/{{ elasticsearch_version }}/debian stable main'
                   state=present
+                  update_cache=yes
 
 - name: Install ElasticSearch
-  apt: pkg=elasticsearch state=present update_cache=yes
+  apt: pkg=elasticsearch state=present update_cache=yes cache_valid_time=3600
 
 - name: Ensure ElasticSearch is running and enabled
   service: name=elasticsearch state=started enabled=yes

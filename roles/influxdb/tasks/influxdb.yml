@@ -9,7 +9,10 @@
                   state=present
 
 - name: Install influxdb
-  apt: name=influxdb={{ influxdb_version }} state=present update_cache=yes
+  apt: name=influxdb={{ influxdb_version }}
+       state=present
+       update_cache=yes
+       cache_valid_time=3600
 
 - name: Install the influxdb configuration file
   copy: src=etc_influxdb_influxdb.conf

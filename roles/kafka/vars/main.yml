@@ -1,4 +1,4 @@
 ---
-kafka_version: 0.9.0.0
+kafka_version: 0.10.0.0
 kafkacat_version: 1.2.0
-librdkafka_version: 0.8.6
+librdkafka_version: 0.9.1

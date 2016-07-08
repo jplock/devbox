@@ -7,9 +7,13 @@
 - name: Add Mesos repository
   apt_repository: repo='deb http://repos.mesosphere.io/ubuntu/ trusty main'
                   state=present
+                  update_cache=yes
 
 - name: Install Mesos
-  apt: pkg=mesos={{ mesos_version }} state=present update_cache=yes
+  apt: pkg=mesos={{ mesos_version }}
+       state=present
+       update_cache=yes
+       cache_valid_time=3600
 
 - name: Configure the Mesos Slave containerizers value
   copy: content='docker,mesos'

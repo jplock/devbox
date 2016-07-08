@@ -2,7 +2,7 @@
 # Defines tasks applicable across all machines in the infrastructure.
 
 - name: Update apt cache
-  apt: update_cache=yes
+  apt: update_cache=yes cache_valid_time=3600
 
 - name: Upgrade all safe packages
   apt: upgrade=safe
